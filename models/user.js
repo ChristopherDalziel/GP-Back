@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const uniqueValidator = require('mongoose-unique-validator');
 
 const UserSchema = new Schema({
+
   firstName: {
     type: String,
     required: true
@@ -14,6 +16,7 @@ const UserSchema = new Schema({
     type: String,
     lowercase: true,
     required: true,
+    unique: true,
     validate: function(email) {
       return (/^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))
       }
@@ -38,4 +41,5 @@ const UserSchema = new Schema({
 
 }, { timestamps: true}, {collection: 'users'});
 
+UserSchema.plugin(uniqueValidator);
 module.exports = mongoose.model("User", UserSchema);
