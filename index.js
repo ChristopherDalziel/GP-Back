@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+
 //heroku won't always use port 5000
 const PORT = process.env.PORT || 5000;
 
@@ -13,9 +14,9 @@ const dbConfig = { useNewUrlParser: true, useUnifiedTopology: true };
 //mongoose
 mongoose.connect(process.env.DB_URL, dbConfig, err => {
   if (err) {
-    console.log(`error: ${err.message}`);
+    console.log(`Error: ${err.message}`);
   } else {
-    console.log("connected to MongoDB Atlas");
+    console.log("Connected to MongoDB Atlas ✅");
   }
 });
 
