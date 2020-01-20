@@ -23,4 +23,7 @@ mongoose.connect(process.env.DB_URL, dbConfig, err => {
 //middleware
 app.use(cors());
 
+//Connecting to the routes
+app.use(require('./routes/index'));
+
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

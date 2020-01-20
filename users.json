@@ -4,13 +4,16 @@
   "lastName": "admin",
   "email": "klinikdrleong@gmail.com",
   "phone":374980117,
-  "password":"eb08ef45"
+  "password":"eb08ef45",
+  "admin": true
+
 },
 {
   "firstName": "testuser ",
   "lastName": "testuser",
   "email": "test@test.com",
   "phone":123456,
-  "password":"testtest"
+  "password":"testtest",
+  "admin": false
 }
 ]
