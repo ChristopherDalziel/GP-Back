@@ -8,8 +8,6 @@ var bodyParser = require("body-parser");
 //heroku won't always use port 5000
 const PORT = process.env.PORT || 5000;
 
-const app = express();
-
 const dbConfig = { useNewUrlParser: true, useUnifiedTopology: true };
 
 //mongoose
@@ -22,6 +20,12 @@ mongoose.connect(process.env.DB_URL, dbConfig, err => {
 });
 
 //middleware
+const app = express();
+app.use(express.json());
 app.use(cors());
+
+
+//Connecting to the routes
+app.use(require('./routes/index'));
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
