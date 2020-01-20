@@ -29,6 +29,7 @@ app.use(require("./routes/index"));
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
+module.exports = app;
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
