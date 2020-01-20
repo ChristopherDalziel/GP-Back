@@ -24,8 +24,21 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-
 //Connecting to the routes
-app.use(require('./routes/index'));
+app.use(require("./routes/index"));
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
+
+app.post("/send", (req, res) => {
+  const name = req.body.name;
+  const contactNumber = req.body.contactNumber;
+  const email = req.body.email;
+  const message = req.body.message;
+  console.log(name, contactNumber, email, message);
+});
