@@ -4,7 +4,7 @@
   "lastName": "admin",
   "email": "klinikdrleong@gmail.com",
   "phone":374980117,
-  "password":"eb08ef45",
+  "password":"$2b$10$f7bRxBdDnn2VGla95Bv0QuR4hy01TgZL4PMlIoPYuEclzxaH7IoNa",
   "admin": true
 
 },
@@ -13,7 +13,7 @@
   "lastName": "testuser",
   "email": "test@test.com",
   "phone":123456,
-  "password":"testtest",
+  "password":"t$2b$10$nV1D0i3LLZ/sL4erIn4kMuEWVif15QU6JL5LH58Wm0bqoguSTQHnm",
   "admin": false
 }
 ]
