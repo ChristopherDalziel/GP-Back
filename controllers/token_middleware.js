@@ -31,6 +31,7 @@ let checkToken = (req, res, next) =>
       {
         req.decoded = decoded;
         next();
+
       }
     } );
   }
@@ -41,6 +42,7 @@ let checkToken = (req, res, next) =>
       success: false,
       message: 'Auth token is not supplied'
     } );
+
   }
 };
 
