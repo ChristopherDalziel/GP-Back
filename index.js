@@ -42,10 +42,12 @@ app.post("/send", (req, res) => {
     <p>You have a new contact request</p>
     <h3>Contact Details</h3>
     <ul>  
-      <li>Name: ${req.body.name}</li>
+      <li>First Name: ${req.body.first_name}</li>
+      <li>Last Name: ${req.body.last_name}</li>
       <li>Email: ${req.body.email}</li>
-      <li>Phone: ${req.body.contactNumber}</li>
+      <li>Phone: ${req.body.contact_number}</li>
     </ul>
+    <h3>Subject: ${req.body.subject} </h3>
     <h3>Message</h3>
     <p>${req.body.message}</p>
   `;
@@ -64,9 +66,9 @@ app.post("/send", (req, res) => {
 
   // setup email data with unicode symbols
   let mailOptions = {
-    from: '"Nodemailer Contact" <process.env.EMAIL_USER>', // sender address
+    from: '"Klinik FWD EMAIL" <process.env.EMAIL_USER>', // sender address
     to: "christopher.dalziel@icloud.com", // list of receivers
-    subject: "Node Contact Request", // Subject line
+    subject: `${req.body.subject}`, // Subject line
     text: "Example", // plain text body
     html: output // html body
   };
