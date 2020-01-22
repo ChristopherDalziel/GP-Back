@@ -37,9 +37,9 @@ async function updateStaff(req,res){
   // const {name, aboutText, imageUrl} = req.body;
 
   // try {
-  //   const staff = await Profile.findOne({ _id=id });
+  //   const staff = await Profile.findOne({ id=id });
   //   const newSta = {name, aboutText, imageUrl};
-  //   await staff.save();
+  //   await newSta.save();
 
   //   res.json(staff);
   // } catch (err) {
@@ -47,7 +47,6 @@ async function updateStaff(req,res){
   //   res.status(500).send('Server Error');
   // }
 }
-
 
 
 //delete staff function 
