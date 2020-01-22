@@ -1,7 +1,7 @@
 var bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 // const express = require("express");
-const uuidv1 = require('uuidv1')
+const uuidv1 = require("uuidv1");
 
 require("dotenv").config();
 
@@ -53,21 +53,21 @@ const send = (req, res) => {
   });
 };
 
-async function resetPassword (req, res) {
+async function resetPassword(req, res) {
   try {
-    const {email} = req.user;
+    const { email } = req.user;
     const id = uuidv1();
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: email,
-      subject: 'Password Reset',
+      subject: "Password Reset",
       text: `Here is your link to reset your password: ${process.env.REACT_APP_FRONTEND_URL}/${id}/reset-password`
-    })
+    });
     req.user.passwordToken = id;
     await req.user.save();
-    res.status(200).send('Password reset successful')
+    res.status(200).send("Password reset successful");
   } catch (err) {
-    res.status(500).send(err.message)
+    res.status(500).send(err.message);
   }
 }
 
