@@ -75,6 +75,7 @@ async function login(req, res) {
   }
 }
 
+//reset password path
 async function resetPassword(req, res) {
   try {
     const {password, token} = req.body;
@@ -99,4 +100,35 @@ async function resetPassword(req, res) {
   }
 }
 
-module.exports = { register, login, resetPassword };
+//find one user path
+const findUser = async (req, res) => {
+  const {token} = req.params;
+  const token_secret = process.env.TOKEN_SECRET;
+  const email = jwt.verify( token, token_secret, (err, decoded) =>
+  {
+    if( err )
+    {
+      return res.json(
+      {
+        success: false,
+        message: 'Token is not valid'
+      } );
+    }
+    else
+    {
+   return decoded.email
+    }
+  } );
+  console.log(email)
+  
+  try {
+    const user = await User.findOne({
+      email: email
+    })
+    res.send(user)
+  } catch (err) {
+    res.status(500).send(err.message)
+  }
+}
+
+module.exports = { register, login, resetPassword, findUser };
