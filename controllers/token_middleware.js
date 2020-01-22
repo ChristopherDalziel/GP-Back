@@ -1,7 +1,8 @@
 let jwt = require( 'jsonwebtoken' );
-const token_secret = process.env.TOKEN_SECRET
+const token_secret = process.env.TOKEN_SECRET;
+const User = require('../models/user');
 
-let checkToken = (req, res, next) =>
+const checkToken = (req, res, next) =>
 {
   // Express headers are auto converted to lowercase
   let token = req.headers['x-access-token'] ||
@@ -46,7 +47,23 @@ let checkToken = (req, res, next) =>
   }
 };
 
+const checkPasswordToken = async (req, res) => {
+  try {
+    const {token} = req.headers;
+    const user = await User.findOne({
+      passwordToken: token
+    })
+    if (!user) {
+      res.status(403).send('Unable to find user')
+    } else {
+      res.status(200).end();
+    }
+  } catch (err) {
+    res.status(500).send(err.message)
+  }
+}
+
 module.exports =
 {
-  checkToken: checkToken
+  checkToken, checkPasswordToken
 }

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { send } = require("../controllers/mail");
+const { send, resetPassword } = require("../controllers/mail");
 
 router.post("/send", send);
 
