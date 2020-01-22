@@ -13,4 +13,10 @@ function dashboard(req, res) {
   return res.send("This is the admin dashboard");
 }
 
-module.exports = { dashboard };
+//add staff function goes here
+
+function addStaff(req, res) {
+  return res.send("This is addStaff");
+}
+
+module.exports = { dashboard, addStaff };
