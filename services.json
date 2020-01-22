@@ -1,0 +1,10 @@
+[
+  {
+    "serviceName": "Eye Check",
+    "serviceDescription": "We check your vision"
+  },
+  {
+    "serviceName": "General Checkup",
+    "serviceDescription": "We prod you and make sure you're still healthy"
+  }
+]

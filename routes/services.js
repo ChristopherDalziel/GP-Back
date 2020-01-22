@@ -1,15 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const {
-  VaccineList,
+  serviceList,
   create,
-  deleteVaccine
-} = require("../controllers/vaccine");
+  deleteService
+} = require("../controllers/service");
 
-router.get("/", VaccineList);
+router.get("/", serviceList);
 
 router.post("/create", express.json(), create);
 
-router.delete("/delete/:id", express.json(), deleteVaccine);
+router.delete("/delete/:id", express.json(), deleteService);
 
 module.exports = router;
