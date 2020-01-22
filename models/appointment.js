@@ -13,6 +13,11 @@ const AppointmentSchema = new Schema({
   },
   comment: {
     type: String
+  },
+  cancelled: {
+    type: Boolean,
+    required: true,
+    default: false
   }
 }, {timestamp: true }, {collection: 'appointments'});
 
