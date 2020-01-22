@@ -1,6 +1,6 @@
-import Vaccine from "../models/vaccine";
+const Vaccine = require("../models/vaccines");
 
-const vaccine = async (req, res) => {
+const VaccineList = async (req, res) => {
   const vaccines = await Vaccine.find();
   res.send(vaccines);
 };
@@ -20,6 +20,6 @@ const create = async (req, res) => {
 };
 
 module.exports = {
-  vaccine,
+  VaccineList,
   create
 };
