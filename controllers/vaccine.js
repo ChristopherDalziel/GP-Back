@@ -19,7 +19,27 @@ const create = async (req, res) => {
     .catch(error => res.status(400).json("Error" + error));
 };
 
+// const deleteVaccine = (req, res) => {
+//   console.log("pls");
+//   Vaccine.findByIdAndDelete(req.params.id)
+//     .then(() => res.json("Vaccine Deleted!"))
+//     .catch(err => res.status(400).json("Error: " + err));
+// };
+
+const deleteVaccine = (req, res, next) => {
+  Vaccine.findByIdAndRemove(req.params.id, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.status(200).json({
+        msg: data
+      });
+    }
+  });
+};
+
 module.exports = {
   VaccineList,
-  create
+  create,
+  deleteVaccine
 };
