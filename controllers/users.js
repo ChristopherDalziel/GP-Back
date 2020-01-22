@@ -4,9 +4,12 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require( 'bcrypt' );
 const cors = require("cors");
 
+
+
 let app = express();
 app.use(express.json());
 app.use(cors());
+
 
 const hashPassword = async password => {
   return await bcrypt.hash(password, 10);
@@ -24,6 +27,7 @@ const createToken = ({ email, admin }) => {
   return jwt.sign({ email, admin }, token_secret, { expiresIn: "24h" });
 };
 
+//registration path
 async function register(req, res) {
   try {
     const { firstName, lastName, email, phone, password } = req.body;
@@ -39,11 +43,13 @@ async function register(req, res) {
     user = await newUser.save();
     const token = createToken(user);
     res.send(token);
+    // res.redirect('back')
   } catch (err) {
     res.status(500).send(err.message);
   }
 }
 
+//login path
 async function login(req, res, next) {
   try {
     const { email, password } = req.body;
@@ -54,7 +60,8 @@ async function login(req, res, next) {
       const correctPassword = await comparePassword(password, user.password);
       if (correctPassword) {
         const token = createToken(user);
-        res.send(token);
+        res.send(token)
+        // res.redirect('/')
         // next();
       } else {
         res.status(403).send("Incorrect username or password");
@@ -67,4 +74,28 @@ async function login(req, res, next) {
   }
 }
 
-module.exports = { register, login };
+async function resetPassword(req, res) {
+  try {
+    const {password, token} = req.body;
+    if (!token) {
+      res.status(403).send('Authentication failed')
+    }
+    const user = await User.findOne({
+      passwordToken: token 
+    })
+    if (!user) {
+      res.status(403).send('Reset password failed')
+    } else {
+      const hashedPassword = await hashPassword(password);
+      user.password = hashedPassword;
+      user.passwordToken = null;
+      await user.save();
+      const token = createToken(user)
+      res.send(token)
+    }
+  } catch(err) {
+    res.status(500).send(err.message)
+  }
+}
+
+module.exports = { register, login, resetPassword };
