@@ -13,11 +13,10 @@ async function addStaff(req, res) {
       aboutText:aboutText,
       imageUrl:imageUrl
     });
-    user = await newStaff.save();
-
-    res.send("Successfully add the staff");
+    staff = await newStaff.save();
+    req.send('successfully add a staff')
+    res.send(staff);
   } catch (err) {
-    console.log(err.message);
     
     res.status(500).send(err.message);
   }
