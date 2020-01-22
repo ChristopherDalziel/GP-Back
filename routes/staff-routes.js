@@ -10,7 +10,5 @@ router.delete('/delete_staff/:id', deleteStaff)
 
 module.exports= router;
 
-router.post("/add_staff", addStaff);
-router.get("/staff", staffs);
 
-module.exports = router;
+
