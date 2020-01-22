@@ -6,10 +6,10 @@ name: {
   type: String,
   required: true
   },
-  aboutText: {
+aboutText: {
     type: String
   },
-  imageUrl: {
+imageUrl: {
     type: String
   }
 }, {collection: 'staffs'});
