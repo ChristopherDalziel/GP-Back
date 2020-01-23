@@ -50,20 +50,21 @@ async function register(req, res) {
 }
 
 //login path
-async function login(req, res, next) {
+async function login(req, res) {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({
       email: email
     });
+    console.log(user, email, password)
     if (user) {
       const correctPassword = await comparePassword(password, user.password);
       if (correctPassword) {
+        console.log("password ok")
         const token = createToken(user);
         res.send(token)
-        // res.redirect('/')
-        // next();
       } else {
+        console.log("password failed")
         res.status(403).send("Incorrect username or password");
       }
     } else {
@@ -74,6 +75,7 @@ async function login(req, res, next) {
   }
 }
 
+//reset password path
 async function resetPassword(req, res) {
   try {
     const {password, token} = req.body;
@@ -98,4 +100,43 @@ async function resetPassword(req, res) {
   }
 }
 
-module.exports = { register, login, resetPassword };
+//find one user path
+const findUser = async (req, res) => {
+
+  //token from local storage passed through request params
+  const {token} = req.params;
+  const token_secret = process.env.TOKEN_SECRET;
+
+  //decoding token and returning email if successful
+  const email = jwt.verify( token, token_secret, (err, decoded) =>
+  {
+    if( err )
+    {
+      return res.json(
+      {
+        success: false,
+        message: 'Token is not valid'
+      } );
+    }
+    else
+    {
+      return decoded.email
+    }
+  } );
+  console.log(email)
+  
+  //finding user info from email decoded from token
+  try {
+    const user = await User.findOne({
+      email: email
+    })
+    res.send({
+      email: user.email,
+      admin: user.admin
+    })
+  } catch (err) {
+    res.status(500).send(err.message)
+  }
+}
+
+module.exports = { register, login, resetPassword, findUser };
