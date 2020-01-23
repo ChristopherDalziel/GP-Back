@@ -123,7 +123,7 @@ const findUser = async (req, res) => {
       return decoded.email
     }
   } );
-  console.log(email)
+
   
   //finding user info from email decoded from token
   try {

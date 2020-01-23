@@ -33,6 +33,8 @@ const UserSchema = new Schema({
     minlength: [6, 'Minimum of 6 characters']
   },
 
+  passwordToken: String,
+
   admin: {
     type: Boolean,
     required: true,
