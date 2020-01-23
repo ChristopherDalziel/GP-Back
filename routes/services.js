@@ -1,15 +1,23 @@
 const express = require("express");
 const router = express.Router();
 const {
-  serviceList,
+  index,
   create,
-  deleteService
+  update,
+  destroy,
+  show
 } = require("../controllers/service");
 
-router.get("/", serviceList);
+router.use(express.json());
 
-router.post("/create", express.json(), create);
+router.get("/", index);
 
-router.delete("/delete/:id", express.json(), deleteService);
+router.post("/create", create);
+
+router.put("/update/:id", update);
+
+router.delete("/delete/:id", destroy);
+
+router.get("/:id", show);
 
 module.exports = router;

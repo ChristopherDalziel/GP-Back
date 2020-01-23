@@ -3,8 +3,8 @@ const router = express.Router();
 const {
   index,
   create,
-  destroy,
   update,
+  destroy,
   show
 } = require("../controllers/vaccine");
 
