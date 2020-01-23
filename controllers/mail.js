@@ -53,15 +53,18 @@ const send = (req, res) => {
   });
 };
 
-async function resetPassword(req, res) {
+const resetPassword = async (req, res) => {
   try {
+    console.log(req.user)
     const { email } = req.user;
+    console.log(email);
+    
     const id = uuidv1();
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: email,
       subject: "Password Reset",
-      text: `Here is your link to reset your password: ${process.env.REACT_APP_FRONTEND_URL}/${id}/reset-password`
+      text: `Here is the link to reset your password: ${process.env.REACT_APP_FRONTEND_URL}/${id}/reset-password`
     });
     req.user.passwordToken = id;
     await req.user.save();
