@@ -100,28 +100,8 @@ async function resetPassword(req, res) {
 //find one user path
 const findUser = async (req, res) => {
 
-  //token from local storage passed through request params
-  const {token} = req.params;
-  const token_secret = process.env.TOKEN_SECRET;
+  const email = req.decoded.email;
 
-  //decoding token and returning email if successful
-  const email = jwt.verify( token, token_secret, (err, decoded) =>
-  {
-    if( err )
-    {
-      return res.json(
-      {
-        success: false,
-        message: 'Token is not valid'
-      } );
-    }
-    else
-    {
-      return decoded.email
-    }
-  } );
-
-  
   //finding user info from email decoded from token
   try {
     const user = await User.findOne({
@@ -129,7 +109,10 @@ const findUser = async (req, res) => {
     })
     res.send({
       email: user.email,
-      admin: user.admin
+      admin: user.admin,
+      phone: user.phone,
+      firstName: user.firstName,
+      lastName: user.lastName
     })
   } catch (err) {
     res.status(500).send(err.message)

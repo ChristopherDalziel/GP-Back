@@ -4,7 +4,6 @@ const User = require('../models/user');
 
 //checking the role of the user, if admin then can progress to next
 const checkAdmin = (req, res, next) => {
-  console.log(req.decoded.admin)
   if (req.decoded.admin == true) {
     next();
   } else {
@@ -12,7 +11,7 @@ const checkAdmin = (req, res, next) => {
   }
 }
 
-//checking for a valid email address
+//checking for a valid email address before sending password reset link
 const checkEmail = async (req, res, next) => {
   const {email} = req.body;
   console.log(req.body)

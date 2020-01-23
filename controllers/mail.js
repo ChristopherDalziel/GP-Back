@@ -53,6 +53,7 @@ const send = (req, res) => {
   });
 };
 
+//send an email with a link containing a token to allow password reset
 const resetPassword = async (req, res) => {
   try {
     const { email } = req.user;

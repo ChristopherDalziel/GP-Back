@@ -7,6 +7,22 @@ const AppointmentSchema = new Schema({
     ref: "User",
     required: true
   },
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  phone: {
+    type: String,
+    required: true
+  },
   dateTime: {
     type: Date,
     required: true
