@@ -50,7 +50,7 @@ async function updateStaff(req,res){
 
 
 //delete staff function 
-async function deleteStaff(req,res){
+async function delete_staff(req,res){
 
   try {
     const staff = await Staff.findById(req.params.id);
@@ -67,4 +67,10 @@ async function deleteStaff(req,res){
   }
 }
 
-module.exports = { dashboard, addStaff,updateStaff,deleteStaff };
+//delete staff function 
+async function upload_image(req,res){
+
+
+}
+
+module.exports = { dashboard, addStaff,updateStaff,delete_staff, upload_image };

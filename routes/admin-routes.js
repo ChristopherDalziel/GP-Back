@@ -12,7 +12,8 @@ router.get('/dashboard', checkToken, checkAdmin, admin.dashboard);
 //staff
 router.post('/add_staff', checkToken, checkAdmin, admin.addStaff);
 router.put('/update_staff/:id', checkToken, checkAdmin, admin.updateStaff);
-router.delete('/delete_staff/:id', checkToken, checkAdmin, admin.deleteStaff)
+router.delete('/delete_staff/:id', checkToken, checkAdmin, admin.delete_staff)
+router.post('/upload_image', checkToken, checkAdmin, admin.upload_image)
 
 module.exports = router;
 
