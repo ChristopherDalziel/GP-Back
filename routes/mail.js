@@ -4,6 +4,6 @@ const { send, resetPassword } = require("../controllers/mail");
 const {checkEmail} = require('../controllers/users_middleware');
 
 router.post("/send", send);
-router.put('/reset-password', express.json(), checkEmail, resetPassword)
+router.put('/reset-password', checkEmail, resetPassword)
 
 module.exports = router;

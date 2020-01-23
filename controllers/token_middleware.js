@@ -50,7 +50,6 @@ const checkToken = (req, res, next) =>
 const checkPasswordToken = async (req, res) => {
   try {
     const {token} = req.headers;
-    console.log(token)
     const user = await User.findOne({
       passwordToken: token
     })

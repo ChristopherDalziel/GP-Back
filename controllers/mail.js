@@ -55,10 +55,7 @@ const send = (req, res) => {
 
 const resetPassword = async (req, res) => {
   try {
-    console.log(req.user)
     const { email } = req.user;
-    console.log(email);
-    
     const id = uuidv1();
     await transporter.sendMail({
       from: process.env.EMAIL_USER,

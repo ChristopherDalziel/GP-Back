@@ -22,8 +22,6 @@ const comparePassword = async (password, hashedPassword) => {
 const token_secret = process.env.TOKEN_SECRET;
 
 const createToken = ({ email, admin }) => {
-  // let isAdmin = admin.toString();
-  // console.log(isAdmin)
   return jwt.sign({ email, admin }, token_secret, { expiresIn: "24h" });
 };
 
@@ -56,7 +54,6 @@ async function login(req, res) {
     const user = await User.findOne({
       email: email
     });
-    console.log(user, email, password)
     if (user) {
       const correctPassword = await comparePassword(password, user.password);
       if (correctPassword) {
