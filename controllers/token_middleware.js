@@ -47,6 +47,7 @@ const checkToken = (req, res, next) =>
   }
 };
 
+//checking the password token sent in the email for password reset
 const checkPasswordToken = async (req, res) => {
   try {
     const {token} = req.headers;
