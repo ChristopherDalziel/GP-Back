@@ -11,6 +11,7 @@ router.post('/login', login);
 router.get('/check-token', checkToken);
 router.get('/check-password-token', checkPasswordToken);
 router.get('/find-user/:token', findUser)
+router.put('/reset-password', resetPassword)
 
 
 
