@@ -14,7 +14,6 @@ const checkAdmin = (req, res, next) => {
 //checking for a valid email address before sending password reset link
 const checkEmail = async (req, res, next) => {
   const {email} = req.body;
-  console.log(req.body)
   const user = await User.findOne({
     email: email
   })

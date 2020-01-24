@@ -17,10 +17,12 @@ const UserSchema = new Schema({
     lowercase: true,
     required: true,
     unique: true,
-    validate: function(email) {
+    validate: {validator: function(email) {
       return (/^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))
-      }
+      }, msg: 'Please enter a valid email address'},
+    uniqueCaseInsensitive: true
     },
+    
   
   phone: {
     type: String,
@@ -43,5 +45,5 @@ const UserSchema = new Schema({
 
 }, { timestamps: true}, {collection: 'users'});
 
-UserSchema.plugin(uniqueValidator);
+UserSchema.plugin(uniqueValidator, { message: 'Error: Email already exists' });
 module.exports = mongoose.model("User", UserSchema);
