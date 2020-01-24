@@ -1,6 +1,3 @@
-// const express = require("express");
-// let app = express();
-// app.use(express.json());
 var bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 // const express = require("express");
@@ -77,31 +74,38 @@ const resetPassword = async (req, res) => {
 
 const appointment = async (req, res) => {
   try {
-    console.log(req.body)
+    // console.log(req.body)
     const { email, firstName, lastName, phone, dateTime, comment } = req.body;
-    // const jsDate = JSON.parse(dateTime);
-    const apptDate = dateTime.toString();
+
+    if (comment == 'undefined') {
+      comment = 'No comment included'
+    }
+
     const output = `
     <p>Thank you for choosing Klinik Doctor Leong.</p>
     <h3>Here are your appointment details: </h3>
+    <h3>Date and Time: ${dateTime}</h3>
     <ul>  
       <li>First Name: ${firstName}</li>
       <li>Last Name: ${lastName}</li>
       <li>Email: ${email}</li>
       <li>Phone: ${phone}</li>
-      <li>Date and Time: ${apptDate}</li>
       <li>Your comments: ${comment} </li>
       </ul>
+      <h5>To change or cancel your appointment, please phone the clinic directly, reply to this message, or via our website once you're logged in.</h5>
+      <h5>Kind regards, <br>
+      The team at Klinik Dr Leong</h5>
   `;
-  //   await transporter.sendMail({
-  //     from: process.env.EMAIL_USER,
-  //     to: email,
-  //     bcc: process.env.EMAIL_USER,
-  //     subject: "Appointment Details",
-  //     html: output
-  //   });
-  //   res.status(200).end();
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email,
+      bcc: process.env.EMAIL_USER,
+      subject: "Appointment Details",
+      html: output
+    });
+    res.status(200).end();
   } catch (err) {
+    console.log(err.message)
     res.status(500).send(err.message);
   }
 }

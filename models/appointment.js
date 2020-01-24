@@ -23,7 +23,7 @@ const AppointmentSchema = new Schema({
     required: true
   },
   dateTime: {
-    type: Date,
+    type: String,
     required: true
   },
   comment: {
