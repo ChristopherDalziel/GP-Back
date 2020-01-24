@@ -12,6 +12,9 @@ const VaccineSchema = new Schema(
     },
     manufacturer: {
       type: String
+    },
+    imageUrl: {
+      type: String
     }
   },
   { collection: "vaccines" }

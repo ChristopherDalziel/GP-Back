@@ -1,12 +1,14 @@
 [
   {
-    "brand": "holden",
-    "description": "this isn't a vaccine",
-    "manufacturer": "????"
+    "brand": "Vaccine Brands R Us",
+    "description": "I mean.. it's better than the other option",
+    "manufacturer": "Vaccines have brands?",
+    "imageUrl": "https://image.shutterstock.com/image-vector/syringe-blue-vaccine-vial-medicine-260nw-714077767.jpg"
   },
   {
-    "brand": "ford",
-    "description": "neither is this",
-    "manufacturer": "!!!!!"
+    "brand": "Brand Name Vaccines",
+    "description": "I wouldn't use this..",
+    "manufacturer": "Again.. vaccines have brands?",
+    "imageUrl": "https://image.shutterstock.com/image-vector/syringe-blue-vaccine-vial-medicine-260nw-714077767.jpg"
   }
 ]
