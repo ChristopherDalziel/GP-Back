@@ -4,12 +4,9 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require( 'bcrypt' );
 const cors = require("cors");
 
-
-
 let app = express();
 app.use(express.json());
 app.use(cors());
-
 
 const hashPassword = async password => {
   return await bcrypt.hash(password, 10);
@@ -106,12 +103,12 @@ const findUser = async (req, res) => {
 
   const email = req.decoded.email;
 
-
   //finding user info from email decoded from token
   try {
     const user = await User.findOne({
       email: email
-    }).then(
+    })
+    .then((user) => {
       res.send({
         email: user.email,
         admin: user.admin,
@@ -119,8 +116,10 @@ const findUser = async (req, res) => {
         firstName: user.firstName,
         lastName: user.lastName
       })
+    }
     )
   } catch (err) {
+    console.log(err.message)
     res.status(500).send(err.message)
   }
 }

@@ -8,7 +8,7 @@ const checkToken = (req, res, next) =>
   // Express headers are auto converted to lowercase
   let token = req.headers['x-access-token'] ||
               req.headers['authorization'] || "";
-
+              
   // An empty string allows the token to be treated as a string but will return false
   if( token.startsWith( 'Bearer ' ) )
   {
