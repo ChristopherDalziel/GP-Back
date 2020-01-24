@@ -1,21 +1,24 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const admin = require('../controllers/admin');
-const users = require('../controllers/users');
+const admin = require("../controllers/admin");
+const users = require("../controllers/users");
 
-const {checkToken} = require('../controllers/token_middleware');
-const {checkAdmin} = require('../controllers/users_middleware');
+const { checkToken } = require("../controllers/token_middleware");
+const { checkAdmin } = require("../controllers/users_middleware");
 
-//dashboard
-router.get('/dashboard', checkToken, checkAdmin, admin.dashboard);
+//Dashboard
+router.get("/dashboard", checkToken, checkAdmin, admin.dashboard);
 
-//staff
-router.get('/staffs', checkToken, checkAdmin, admin.staffs);
-router.post('/add_staff', checkToken, checkAdmin, admin.addStaff);
-router.put('/edit_staff/:id', checkToken, checkAdmin, admin.editStaff);
-router.put('/update_staff/:id', checkToken, checkAdmin, admin.updateStaff);
-router.delete('/delete_staff/:id', checkToken, checkAdmin, admin.deleteStaff);
-router.post('/upload_image', checkToken, checkAdmin, admin.upload_image);
+//Staff
+router.get("/staffs", checkToken, checkAdmin, admin.staffs);
+router.post("/add_staff", checkToken, checkAdmin, admin.addStaff);
+router.put("/edit_staff/:id", checkToken, checkAdmin, admin.editStaff);
+router.put("/update_staff/:id", checkToken, checkAdmin, admin.updateStaff);
+router.delete("/delete_staff/:id", checkToken, checkAdmin, admin.deleteStaff);
+router.post("/upload_image", checkToken, checkAdmin, admin.upload_image);
+
+// Vaccines
+
+// Services
 
 module.exports = router;
-
