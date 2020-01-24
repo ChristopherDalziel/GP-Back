@@ -2,11 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const AppointmentSchema = new Schema({
-  user: {
-    type: ObjectId,
-    ref: "User",
-    required: true
-  },
+  // user: {
+  //   type: ObjectId,
+  //   ref: "User",
+  // },
   firstName: {
     type: String,
     required: true
@@ -24,7 +23,7 @@ const AppointmentSchema = new Schema({
     required: true
   },
   dateTime: {
-    type: Date,
+    type: String,
     required: true
   },
   comment: {
