@@ -103,9 +103,9 @@ async function resetPassword(req, res) {
 
 //find one user path
 const findUser = async (req, res) => {
-  console.log(req.decoded)
 
   const email = req.decoded.email;
+
 
   //finding user info from email decoded from token
   try {
