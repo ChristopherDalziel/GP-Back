@@ -40,7 +40,8 @@ async function register(req, res) {
     });
     user = await newUser.save();
     const token = createToken(user);
-    res.send(token);
+    res.send({token: token,
+      admin: user.admin})
     // res.redirect('back')
   } catch (err) {
     console.log(err.message)
@@ -60,7 +61,8 @@ async function login(req, res) {
       if (correctPassword) {
         console.log("password ok")
         const token = createToken(user);
-        res.send(token)
+        res.send({token: token,
+          admin: user.admin})
       } else {
         console.log("password failed")
         res.status(403).send("Incorrect username or password");
@@ -91,7 +93,8 @@ async function resetPassword(req, res) {
       user.passwordToken = null;
       await user.save();
       const token = createToken(user)
-      res.send(token)
+      res.send({token: token,
+        admin: user.admin})
     }
   } catch(err) {
     res.status(500).send(err.message)
@@ -100,6 +103,7 @@ async function resetPassword(req, res) {
 
 //find one user path
 const findUser = async (req, res) => {
+  console.log(req.decoded)
 
   const email = req.decoded.email;
 
@@ -107,14 +111,15 @@ const findUser = async (req, res) => {
   try {
     const user = await User.findOne({
       email: email
-    })
-    res.send({
-      email: user.email,
-      admin: user.admin,
-      phone: user.phone,
-      firstName: user.firstName,
-      lastName: user.lastName
-    })
+    }).then(
+      res.send({
+        email: user.email,
+        admin: user.admin,
+        phone: user.phone,
+        firstName: user.firstName,
+        lastName: user.lastName
+      })
+    )
   } catch (err) {
     res.status(500).send(err.message)
   }

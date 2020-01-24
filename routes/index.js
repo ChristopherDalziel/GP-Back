@@ -5,6 +5,8 @@ router.use("/admin", require("./admin-routes"));
 
 router.use("/users", require("./users"));
 
+router.use("/appointments", require("./appointments"))
+
 router.use("/mail", require("./mail"));
 
 router.use("/vaccines", require("./vaccines"));
