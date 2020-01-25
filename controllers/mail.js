@@ -74,7 +74,6 @@ const resetPassword = async (req, res) => {
 
 const appointment = async (req, res) => {
   try {
-    // console.log(req.body)
     const { email, firstName, lastName, phone, dateTime, comment } = req.body;
 
     if (comment == 'undefined') {
