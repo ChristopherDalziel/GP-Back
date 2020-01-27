@@ -34,6 +34,6 @@ const AppointmentSchema = new Schema({
     required: true,
     default: false
   }
-}, {timestamp: true }, {collection: 'appointments'});
+}, { timestamps: true}, {collection: 'appointments'});
 
 module.exports = mongoose.model("Appointment", AppointmentSchema);

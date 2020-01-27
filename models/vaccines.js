@@ -17,7 +17,7 @@ const VaccineSchema = new Schema(
       type: String
     }
   },
-  { collection: "vaccines" }
+  { timestamps: true}, { collection: "vaccines" }
 );
 
 module.exports = mongoose.model("Vaccine", VaccineSchema);
