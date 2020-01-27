@@ -9,16 +9,6 @@ app.use(cors());
 async function newAppointment (req, res) {
   try {
     const { firstName, lastName, email, phone, dateTime, comment} = req.body;
-    // const userId = await User.findOne({
-    //   email: email
-    // }).then((response) => {
-    //   if (response._id) {
-    //     id = response._id
-    //   } else {
-    //     id = null
-    //   }
-    //   return id
-    // })
 
     let newAppointment = new Appointment({
       // user: userId,
@@ -30,10 +20,10 @@ async function newAppointment (req, res) {
       comment: comment,
       cancelled: false
     });
+
     appointment = await newAppointment.save();
     
-    res.status(200).send('Appointment Created')
-    // res.redirect('back')
+    res.status(200).send(appointment)
   } catch (err) {
     console.log(err.message)
     res.status(500).send(err.message);
