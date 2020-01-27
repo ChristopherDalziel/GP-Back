@@ -1,6 +1,7 @@
 const express = require("express");
 const Appointment = require("../models/appointment");
 const cors = require("cors");
+const mongoose = require('mongoose');
 
 let app = express();
 app.use(express.json());
@@ -30,4 +31,16 @@ async function newAppointment (req, res) {
   }
 }
 
-module.exports = {newAppointment}
+async function getAppointmentsByUser (req, res) {
+ try {
+  const email = req.decoded.email;
+  const query = Appointment.find({email: email, cancelled:false});
+  query instanceof mongoose.Query; // true
+  const appointments =  await query; // Get the documents
+  res.send(appointments);
+ } catch(err) {
+   console.log(err);
+ }
+}
+
+module.exports = {newAppointment, getAppointmentsByUser}
