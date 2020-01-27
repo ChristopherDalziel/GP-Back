@@ -34,7 +34,7 @@ async function newAppointment (req, res) {
 async function getAppointmentsByUser (req, res) {
  try {
   const email = req.decoded.email;
-  const query = Appointment.find({email: email, cancelled:false});
+  const query = Appointment.find({email: email, cancelled:false}).sort({createdAt: 'descending'});
   query instanceof mongoose.Query; // true
   const appointments =  await query; // Get the documents
   res.send(appointments);
@@ -43,4 +43,16 @@ async function getAppointmentsByUser (req, res) {
  }
 }
 
-module.exports = {newAppointment, getAppointmentsByUser}
+async function deleteAppointment (req, res, next) {
+    Appointment.findByIdAndRemove(req.params.id, (error, data) => {
+      if (error) {
+        return next(error);
+      } else {
+        res.status(200).send({
+          msg: `Appointment on ${data.dateTime} cancelled successfully`
+        });
+      }
+    });
+}
+
+module.exports = {newAppointment, getAppointmentsByUser, deleteAppointment}

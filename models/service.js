@@ -11,6 +11,6 @@ const ServiceSchema = new Schema({
   {
     type: String
   }
-}, {collection: 'services'});
+}, { timestamps: true}, {collection: 'services'});
 
 module.exports = mongoose.model("Service", ServiceSchema);

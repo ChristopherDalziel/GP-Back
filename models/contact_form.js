@@ -24,6 +24,6 @@ name: {
     type: String,
     required: true
   }
-}, {timestamp: true}, {collection: 'contactforms'});
+}, { timestamps: true }, {collection: 'contactforms'});
 
 module.exports = mongoose.model("ContactForm", ContactFormSchema);
