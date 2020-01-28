@@ -91,7 +91,8 @@ const appointment = async (req, res) => {
       <li>Phone: ${phone}</li>
       <li>Your comments: ${comment} </li>
       </ul>
-      <h5>To change or cancel your appointment, please phone the clinic directly, reply to this message, or via our website once you're logged in.</h5>
+      <h5>To cancel your appointment, please phone the clinic directly, reply to this message, or via our website once you're logged in.</h5>
+      <h5>To Change your appointment, please cancel this appointment and make a new one.</h5>
       <h5>Kind regards, <br>
       The team at Klinik Dr Leong</h5>
   `;
