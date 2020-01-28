@@ -1,13 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const admin = require('../controllers/admin');
-const users = require('../controllers/users');
+const admin = require("../controllers/admin");
+const users = require("../controllers/users");
 
-const {checkToken} = require('../controllers/token_middleware');
-const {checkAdmin} = require('../controllers/users_middleware');
+const { checkToken } = require("../controllers/token_middleware");
+const { checkAdmin } = require("../controllers/users_middleware");
 
-//dashboard
-router.get('/dashboard', checkToken, checkAdmin, admin.dashboard);
+//Dashboard
+router.get("/admin_dashboard", checkToken, checkAdmin, admin.dashboard);
 
 //staff
 router.get('/staff',  admin.staffs);

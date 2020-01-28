@@ -4,12 +4,9 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require( 'bcrypt' );
 const cors = require("cors");
 
-
-
 let app = express();
 app.use(express.json());
 app.use(cors());
-
 
 const hashPassword = async password => {
   return await bcrypt.hash(password, 10);
@@ -22,8 +19,6 @@ const comparePassword = async (password, hashedPassword) => {
 const token_secret = process.env.TOKEN_SECRET;
 
 const createToken = ({ email, admin }) => {
-  // let isAdmin = admin.toString();
-  // console.log(isAdmin)
   return jwt.sign({ email, admin }, token_secret, { expiresIn: "24h" });
 };
 
@@ -42,9 +37,11 @@ async function register(req, res) {
     });
     user = await newUser.save();
     const token = createToken(user);
-    res.send(token);
+    res.send({token: token,
+      admin: user.admin})
     // res.redirect('back')
   } catch (err) {
+    console.log(err.message)
     res.status(500).send(err.message);
   }
 }
@@ -56,13 +53,13 @@ async function login(req, res) {
     const user = await User.findOne({
       email: email
     });
-    console.log(user, email, password)
     if (user) {
       const correctPassword = await comparePassword(password, user.password);
       if (correctPassword) {
         console.log("password ok")
         const token = createToken(user);
-        res.send(token)
+        res.send({token: token,
+          admin: user.admin})
       } else {
         console.log("password failed")
         res.status(403).send("Incorrect username or password");
@@ -93,7 +90,8 @@ async function resetPassword(req, res) {
       user.passwordToken = null;
       await user.save();
       const token = createToken(user)
-      res.send(token)
+      res.send({token: token,
+        admin: user.admin})
     }
   } catch(err) {
     res.status(500).send(err.message)
@@ -103,38 +101,25 @@ async function resetPassword(req, res) {
 //find one user path
 const findUser = async (req, res) => {
 
-  //token from local storage passed through request params
-  const {token} = req.params;
-  const token_secret = process.env.TOKEN_SECRET;
+  const email = req.decoded.email;
 
-  //decoding token and returning email if successful
-  const email = jwt.verify( token, token_secret, (err, decoded) =>
-  {
-    if( err )
-    {
-      return res.json(
-      {
-        success: false,
-        message: 'Token is not valid'
-      } );
-    }
-    else
-    {
-      return decoded.email
-    }
-  } );
-
-  
   //finding user info from email decoded from token
   try {
     const user = await User.findOne({
       email: email
     })
-    res.send({
-      email: user.email,
-      admin: user.admin
-    })
+    .then((user) => {
+      res.send({
+        email: user.email,
+        admin: user.admin,
+        phone: user.phone,
+        firstName: user.firstName,
+        lastName: user.lastName
+      })
+    }
+    )
   } catch (err) {
+    console.log(err.message)
     res.status(500).send(err.message)
   }
 }

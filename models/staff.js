@@ -12,6 +12,6 @@ aboutText: {
 imageUrl: {
     type: String
   }
-}, {collection: 'staffs'});
+}, { timestamps: true}, {collection: 'staffs'});
 
 module.exports = mongoose.model("Staff", StaffSchema);

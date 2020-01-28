@@ -12,9 +12,12 @@ const VaccineSchema = new Schema(
     },
     manufacturer: {
       type: String
+    },
+    imageUrl: {
+      type: String
     }
   },
-  { collection: "vaccines" }
+  { timestamps: true}, { collection: "vaccines" }
 );
 
 module.exports = mongoose.model("Vaccine", VaccineSchema);

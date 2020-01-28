@@ -5,13 +5,13 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
 
-//staff 
+//staff
 const Staff = require("../models/staff");
-const AWS = require('aws-sdk');
-const fs = require('fs');
-const fileType = require('file-type');
-const bluebird = require('bluebird');
-const multiparty = require('multiparty');
+const AWS = require("aws-sdk");
+const fs = require("fs");
+const fileType = require("file-type");
+const bluebird = require("bluebird");
+const multiparty = require("multiparty");
 
 let app = express();
 app.use(express.json());
@@ -21,85 +21,78 @@ function dashboard(req, res) {
   return res.send("This is the admin dashboard");
 }
 
-
-
 // get all staffs
 
-function staffs (req, res) {
-  Staff.find(function(err, staffs){
-  if(err){
-    console.log(err);
-  }
-  else {
-    res.json(staffs);
-  }
-});
+function staffs(req, res) {
+  Staff.find(function(err, staffs) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(staffs);
+    }
+  });
 }
 
-//add staff function 
+//add staff function
 async function addStaff(req, res) {
   try {
-    const { name, aboutText, imageUrl} = req.body;
+    const { name, aboutText, imageUrl } = req.body;
     let newStaff = new Staff({
       name: name,
-      aboutText:aboutText,
-      imageUrl:imageUrl
+      aboutText: aboutText,
+      imageUrl: imageUrl
     });
     const staff = await newStaff.save();
     res.send(staff);
   } catch (err) {
-    
     res.status(500).send(err.message);
   }
 }
 
 // staff edit route
-function editStaff (req, res) {
+function editStaff(req, res) {
   let id = req.params.id;
-  Staff.findById(id, function (err, staff){
-      res.json(staff);
+  Staff.findById(id, function(err, staff) {
+    res.json(staff);
   });
-};
+}
 
 //  Staff update route
-function updateStaff (req, res) {
-   Staff.findById(req.params.id, function(err, staff) {
-    if (!staff)
-      res.status(404).send("data is not found");
+function updateStaff(req, res) {
+  Staff.findById(req.params.id, function(err, staff) {
+    if (!staff) res.status(404).send("data is not found");
     else {
-        staff.name = req.body.name;
-        staff.aboutText = req.body.aboutText;
-       
+      staff.name = req.body.name;
+      staff.aboutText = req.body.aboutText;
 
-        staff.save().then(staff => {
-          res.json('Update complete');
-      })
-      .catch(err => {
-            res.status(400).send("unable to update the database");
-      });
+      staff
+        .save()
+        .then(staff => {
+          res.json("Update complete");
+        })
+        .catch(err => {
+          res.status(400).send("unable to update the database");
+        });
     }
   });
 }
 
-//delete staff function 
-async function deleteStaff(req,res){
+//delete staff function
+async function deleteStaff(req, res) {
   try {
     const staff = await Staff.findById(req.params.id);
 
-    //Check for ObjectId format 
+    //Check for ObjectId format
     if (!req.params.id.match(/^[0-9a-fA-F]{24}$/) || !staff) {
-      return res.status(404).json({ msg: 'staff not found' });
+      return res.status(404).json({ msg: "staff not found" });
     }
     await staff.remove();
-    res.json({ msg: 'staff removed'});
+    res.json({ msg: "staff removed" });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 }
-
-
-
 
 //upload staff image
 // 1.configure the keys for accessing AWS
@@ -117,7 +110,7 @@ const s3 = new AWS.S3();
 // 3.abstracts function to upload a file returning a promise
 const uploadFile = (buffer, name, type) => {
   const params = {
-    ACL: 'public-read',
+    ACL: "public-read",
     Body: buffer,
     Bucket: process.env.S3_BUCKET,
     ContentType: type.mime,
@@ -126,8 +119,7 @@ const uploadFile = (buffer, name, type) => {
   return s3.upload(params).promise();
 };
 
-
- function upload_image(request, response){
+function upload_image(request, response) {
   const form = new multiparty.Form();
   form.parse(request, async (error, fields, files) => {
     if (error) throw new Error(error);
@@ -143,8 +135,14 @@ const uploadFile = (buffer, name, type) => {
       return response.status(400).send(error);
     }
   });
-
 }
 
-
-module.exports = { dashboard,staffs,addStaff,updateStaff,editStaff,deleteStaff,upload_image };
+module.exports = {
+  dashboard,
+  staffs,
+  addStaff,
+  updateStaff,
+  editStaff,
+  deleteStaff,
+  upload_image
+};
