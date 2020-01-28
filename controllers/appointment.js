@@ -43,16 +43,17 @@ async function getAppointmentsByUser (req, res) {
  }
 }
 
-async function deleteAppointment (req, res, next) {
-    Appointment.findByIdAndRemove(req.params.id, (error, data) => {
+async function cancelAppointment (req, res, next) {
+    Appointment.findByIdAndUpdate({_id: req.params.id}, {cancelled: true}, (error, appointment) => {
       if (error) {
         return next(error);
       } else {
         res.status(200).send({
-          msg: `Appointment on ${data.dateTime} cancelled successfully`
+          msg: `Appointment on ${appointment.dateTime} cancelled successfully`
         });
+        
       }
     });
 }
 
-module.exports = {newAppointment, getAppointmentsByUser, deleteAppointment}
+module.exports = {newAppointment, getAppointmentsByUser, cancelAppointment}
