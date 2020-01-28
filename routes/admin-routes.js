@@ -10,12 +10,14 @@ const {checkAdmin} = require('../controllers/users_middleware');
 router.get('/dashboard', checkToken, checkAdmin, admin.dashboard);
 
 //staff
-router.get('/staffs', checkToken, checkAdmin, admin.staffs);
-router.post('/add_staff', checkToken, checkAdmin, admin.addStaff);
-router.put('/edit_staff/:id', checkToken, checkAdmin, admin.editStaff);
-router.put('/update_staff/:id', checkToken, checkAdmin, admin.updateStaff);
-router.delete('/delete_staff/:id', checkToken, checkAdmin, admin.deleteStaff);
-router.post('/upload_image', checkToken, checkAdmin, admin.upload_image);
+router.get('/staff',  admin.staffs);
+router.post('/add_staff', admin.addStaff);
+router.put('/edit_staff/:id',  admin.editStaff);
+router.put('/update_staff/:id',  admin.updateStaff);
+router.delete('/delete_staff/:id',  admin.deleteStaff);
+router.post('/upload_image', admin.upload_image);
 
 module.exports = router;
+
+
 
