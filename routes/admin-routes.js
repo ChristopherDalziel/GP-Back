@@ -18,6 +18,3 @@ router.delete('/delete_staff/:id',  admin.deleteStaff);
 
 
 module.exports = router;
-
-
-

@@ -110,6 +110,7 @@ const findUser = async (req, res) => {
     })
     .then((user) => {
       res.send({
+        id: user._id,
         email: user.email,
         admin: user.admin,
         phone: user.phone,
@@ -124,4 +125,29 @@ const findUser = async (req, res) => {
   }
 }
 
-module.exports = { register, login, resetPassword, findUser };
+const editUser = async (req, res) => {
+  try {
+  const findUser = {_id: req.params.id};
+  const {email, firstName, lastName, phone} = req.body
+  const updatedInfo = {
+    email: email,
+    firstName: firstName,
+    lastName: lastName,
+    phone: phone
+  }
+    await User.findOneAndUpdate(findUser, updatedInfo, { new: true })
+    .then((user) => {res.send({
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      phone: user.phone
+    })
+  })
+}
+catch (err) {
+    console.log(err.message);
+    res.status(500).send(err.message )
+  }
+}
+
+module.exports = { register, login, resetPassword, findUser, editUser };
