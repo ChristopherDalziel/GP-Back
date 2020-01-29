@@ -1,7 +1,7 @@
 const openingHours = require("../models/openingHours");
 
 const index = async (req, res) => {
-  const hours = await openingHours.find();
+  const hours = await openingHours.find().sort({ order: "asc" });
   res.send(hours);
 };
 
