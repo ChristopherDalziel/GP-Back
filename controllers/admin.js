@@ -39,6 +39,7 @@ async function addStaff(req, res) {
     const { name, aboutText, imageUrl } = req.body;
     let newStaff = new Staff({
       name: name,
+      position: position,
       aboutText: aboutText,
       imageUrl: imageUrl
     });
@@ -64,6 +65,7 @@ function updateStaff(req, res) {
     else {
       staff.name = req.body.name;
       staff.aboutText = req.body.aboutText;
+      staff.position = req.body.position;
       staff.imageUrl = req.body.imageUrl;
 
       staff
