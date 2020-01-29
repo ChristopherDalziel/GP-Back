@@ -21,8 +21,7 @@ function dashboard(req, res) {
   return res.send("This is the admin dashboard");
 }
 
-// get all staffs
-
+// Get all Staff
 function staffs(req, res) {
   Staff.find(function(err, staffs) {
     if (err) {
@@ -33,7 +32,7 @@ function staffs(req, res) {
   });
 }
 
-//add staff function
+//Create new Staff member
 async function addStaff(req, res) {
   try {
     const { name, aboutText, imageUrl } = req.body;
@@ -49,7 +48,7 @@ async function addStaff(req, res) {
   }
 }
 
-// staff edit route
+// Edit current Staff
 function editStaff(req, res) {
   let id = req.params.id;
   Staff.findById(id, function(err, staff) {
@@ -77,7 +76,7 @@ function updateStaff(req, res) {
   });
 }
 
-//delete staff function
+//Delete Staff member
 async function deleteStaff(req, res) {
   try {
     const staff = await Staff.findById(req.params.id);
