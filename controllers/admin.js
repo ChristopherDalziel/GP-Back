@@ -35,7 +35,7 @@ function staffs(req, res) {
 //Create new Staff member
 async function addStaff(req, res) {
   try {
-    const { name, aboutText, imageUrl } = req.body;
+    const { name, position,aboutText, imageUrl } = req.body;
     let newStaff = new Staff({
       name: name,
       position: position,
