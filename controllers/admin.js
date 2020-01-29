@@ -1,6 +1,6 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const User = require("../models/user");
+const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
@@ -17,8 +17,16 @@ let app = express();
 app.use(express.json());
 app.use(cors());
 
-function dashboard(req, res) {
-  return res.send("This is the admin dashboard");
+async function allUsers(req, res) {
+  try {
+    const query = User.find();
+    query instanceof mongoose.Query; // true
+    const usersList = await query.sort({lastName: 'descending'}); // Get the documents
+    res.send(usersList);
+  } catch (err) {
+    console.log(err.message)
+    res.send(err.message)
+  }
 }
 
 // Get all Staff
@@ -96,14 +104,37 @@ async function deleteStaff(req, res) {
   }
 }
 
+const getUserInfo = async (req, res) => {
+
+  const id = req.params.id;
+
+  try {
+    await User.findById(id)
+    .then((user) => {
+      res.send({
+        email: user.email,
+        admin: user.admin,
+        phone: user.phone,
+        firstName: user.firstName,
+        lastName: user.lastName
+      })
+    }
+    )
+  } catch (err) {
+    console.log(err.message)
+    res.status(500).send(err.message)
+  }
+}
+
 
 
 
 module.exports = {
-  dashboard,
   staffs,
   addStaff,
   updateStaff,
   editStaff,
-  deleteStaff
+  deleteStaff,
+  allUsers,
+  getUserInfo
 };
