@@ -110,4 +110,39 @@ const appointment = async (req, res) => {
   }
 }
 
-module.exports = { send, resetPassword, appointment };
+const cancelAppointment = async (req, res) => {
+  try {
+    const { email, firstName, lastName, phone, dateTime, comment } = req.body;
+
+    if (comment == 'undefined') {
+      comment = 'No comment included'
+    }
+
+    const output = `
+    <h2>Your appointment below has been CANCELLED:</h2>
+    <h3>Date and Time: ${dateTime}</h3>
+    <ul>  
+      <li>First Name: ${firstName}</li>
+      <li>Last Name: ${lastName}</li>
+      <li>Email: ${email}</li>
+      <li>Phone: ${phone}</li>
+      <li>Your comments: ${comment} </li>
+      </ul>
+      <h5>To make a new appointment, please visit our website or call the clinic on <a href="tel:+603-7498-0017">+60 3-7498 0017</a></h5>
+      <h5>Kind regards, <br>
+      The team at Klinik Dr Leong</h5>
+  `;
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email,
+      bcc: process.env.EMAIL_USER,
+      subject: "CANCELLED Appointment",
+      html: output
+    });
+    res.status(200).end();
+  } catch (err) {
+    console.log(err.message)
+    res.status(500).send(err.message);
+  }
+}
+module.exports = { send, resetPassword, appointment, cancelAppointment };

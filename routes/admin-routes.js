@@ -7,10 +7,11 @@ const { checkToken } = require("../controllers/token_middleware");
 const { checkAdmin } = require("../controllers/users_middleware");
 
 //Dashboard
-router.get("/admin_dashboard", checkToken, checkAdmin, admin.dashboard);
+// router.get("/admin_dashboard", checkToken, checkAdmin, admin.dashboard);
 
 //staff
 router.get('/staff',  admin.staffs);
+router.get('/users', checkToken, checkAdmin, admin.allUsers)
 router.post('/add_staff', admin.addStaff);
 router.put('/edit_staff/:id',  admin.editStaff);
 router.put('/update_staff/:id',  admin.updateStaff);
