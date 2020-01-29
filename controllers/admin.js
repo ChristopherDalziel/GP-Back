@@ -104,6 +104,28 @@ async function deleteStaff(req, res) {
   }
 }
 
+const getUserInfo = async (req, res) => {
+
+  const id = req.params.id;
+
+  try {
+    await User.findById(id)
+    .then((user) => {
+      res.send({
+        email: user.email,
+        admin: user.admin,
+        phone: user.phone,
+        firstName: user.firstName,
+        lastName: user.lastName
+      })
+    }
+    )
+  } catch (err) {
+    console.log(err.message)
+    res.status(500).send(err.message)
+  }
+}
+
 
 
 
@@ -113,6 +135,6 @@ module.exports = {
   updateStaff,
   editStaff,
   deleteStaff,
-  upload_image,
-  allUsers
+  allUsers,
+  getUserInfo
 };

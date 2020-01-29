@@ -11,11 +11,15 @@ const { checkAdmin } = require("../controllers/users_middleware");
 
 //staff
 router.get('/staff',  admin.staffs);
-router.get('/users', checkToken, checkAdmin, admin.allUsers)
+router.get('/users', checkToken, checkAdmin, admin.allUsers);
+router.get('/user/:id', checkToken, checkAdmin, admin.getUserInfo);
+
 router.post('/add_staff', admin.addStaff);
 router.put('/edit_staff/:id',  admin.editStaff);
 router.put('/update_staff/:id',  admin.updateStaff);
+
 router.delete('/delete_staff/:id',  admin.deleteStaff);
+
 
 
 module.exports = router;
