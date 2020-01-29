@@ -29,8 +29,7 @@ async function allUsers(req, res) {
   }
 }
 
-// get all staffs
-
+// Get all Staff
 function staffs(req, res) {
   Staff.find(function(err, staffs) {
     if (err) {
@@ -41,12 +40,13 @@ function staffs(req, res) {
   });
 }
 
-//add staff function
+//Create new Staff member
 async function addStaff(req, res) {
   try {
-    const { name, aboutText, imageUrl } = req.body;
+    const { name, position,aboutText, imageUrl } = req.body;
     let newStaff = new Staff({
       name: name,
+      position: position,
       aboutText: aboutText,
       imageUrl: imageUrl
     });
@@ -57,7 +57,7 @@ async function addStaff(req, res) {
   }
 }
 
-// staff edit route
+// Edit current Staff
 function editStaff(req, res) {
   let id = req.params.id;
   Staff.findById(id, function(err, staff) {
@@ -72,6 +72,8 @@ function updateStaff(req, res) {
     else {
       staff.name = req.body.name;
       staff.aboutText = req.body.aboutText;
+      staff.position = req.body.position;
+      staff.imageUrl = req.body.imageUrl;
 
       staff
         .save()
@@ -85,7 +87,7 @@ function updateStaff(req, res) {
   });
 }
 
-//delete staff function
+//Delete Staff member
 async function deleteStaff(req, res) {
   try {
     const staff = await Staff.findById(req.params.id);
@@ -102,48 +104,8 @@ async function deleteStaff(req, res) {
   }
 }
 
-//upload staff image
-// 1.configure the keys for accessing AWS
-AWS.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-});
 
-// 2.configure AWS to work with promises
-AWS.config.setPromisesDependency(bluebird);
 
-// create S3 instance
-const s3 = new AWS.S3();
-
-// 3.abstracts function to upload a file returning a promise
-const uploadFile = (buffer, name, type) => {
-  const params = {
-    ACL: "public-read",
-    Body: buffer,
-    Bucket: process.env.S3_BUCKET,
-    ContentType: type.mime,
-    Key: `${name}.${type.ext}`
-  };
-  return s3.upload(params).promise();
-};
-
-function upload_image(request, response) {
-  const form = new multiparty.Form();
-  form.parse(request, async (error, fields, files) => {
-    if (error) throw new Error(error);
-    try {
-      const path = files.file[0].path;
-      const buffer = fs.readFileSync(path);
-      const type = fileType(buffer);
-      const timestamp = Date.now().toString();
-      const fileName = `bucketFolder/${timestamp}-lg`;
-      const data = await uploadFile(buffer, fileName, type);
-      return response.status(200).send(data);
-    } catch (error) {
-      return response.status(400).send(error);
-    }
-  });
-}
 
 module.exports = {
   staffs,
