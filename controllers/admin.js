@@ -1,5 +1,6 @@
 const express = require("express");
 const User = require("../models/user");
+const Appointment = require("../models/appointment");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -23,6 +24,19 @@ async function allUsers(req, res) {
     query instanceof mongoose.Query; // true
     const usersList = await query.sort({lastName: 'descending'}); // Get the documents
     res.send(usersList);
+  } catch (err) {
+    console.log(err.message)
+    res.send(err.message)
+  }
+}
+
+async function allAppointments(req, res) {
+  try {
+    const query = Appointment.find({cancelled: false});
+    query instanceof mongoose.Query; // true
+    const appointmentsList = await query.sort({createdAt
+      : 'descending'}); // Get the documents
+    res.send(appointmentsList);
   } catch (err) {
     console.log(err.message)
     res.send(err.message)
@@ -136,5 +150,6 @@ module.exports = {
   editStaff,
   deleteStaff,
   allUsers,
-  getUserInfo
+  getUserInfo,
+  allAppointments
 };

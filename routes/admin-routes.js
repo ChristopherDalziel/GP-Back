@@ -13,12 +13,13 @@ const { checkAdmin } = require("../controllers/users_middleware");
 router.get('/staff',  admin.staffs);
 router.get('/users', checkToken, checkAdmin, admin.allUsers);
 router.get('/user/:id', checkToken, checkAdmin, admin.getUserInfo);
+router.get('/appointments', checkToken, checkAdmin, admin.allAppointments);
 
-router.post('/add_staff', admin.addStaff);
-router.put('/edit_staff/:id',  admin.editStaff);
-router.put('/update_staff/:id',  admin.updateStaff);
+router.post('/add_staff', checkToken, checkAdmin, admin.addStaff);
+router.put('/edit_staff/:id', checkToken, checkAdmin, admin.editStaff);
+router.put('/update_staff/:id', checkToken, checkAdmin, admin.updateStaff);
 
-router.delete('/delete_staff/:id',  admin.deleteStaff);
+router.delete('/delete_staff/:id', checkToken, checkAdmin, admin.deleteStaff);
 
 
 
