@@ -5,72 +5,36 @@ const index = async (req, res) => {
   res.send(hours);
 };
 
-// const show = async (req, res) => {
-//   try {
-//     const vaccine = await Vaccine.findById(req.params.id);
-//     res.send(vaccine);
-//   } catch (err) {
-//     res.status(500).send(err.message);
-//   }
-// };
-
-const create = async (req, res) => {
-  const {
-    monday,
-    tuesday,
-    wednesday,
-    thursday,
-    friday,
-    saturday,
-    sunday
-  } = req.body;
-  const newOpeningHours = new Hours({
-    monday,
-    tuesday,
-    wednesday,
-    thursday,
-    friday,
-    saturday,
-    sunday
-  });
-  const savedOpeningHours = await newOpeningHours.save();
-  res
-    .send(savedOpeningHours)
-    .then(
-      () => console.log("New Opening Hours Added!"),
-      res.redirect("/contact")
-    )
-    .catch(error => res.status(400).json("Error" + error));
+const show = async (req, res) => {
+  try {
+    const hours = await openingHours.findById(req.params.id);
+    res.send(hours);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
 };
 
-// const destroy = (req, res, next) => {
-//   Vaccine.findByIdAndRemove(req.params.id, (error, data) => {
-//     if (error) {
-//       return next(error);
-//     } else {
-//       res.status(200).json({
-//         msg: data
-//       });
-//     }
-//   });
-// };
-
-// const update = async (req, res, next) => {
-//   try {
-//     const updatedVaccine = await Vaccine.findOneAndUpdate(
-//       {
-//         _id: req.params.id
-//       },
-//       req.body,
-//       { new: true }
-//     );
-//     res.send(updatedVaccine);
-//   } catch (err) {
-//     res.status(500).send(err.message);
-//   }
-// };
+const update = async (req, res, next) => {
+  try {
+    await openingHours.deleteMany();
+    const times = Object.values(req.body);
+    const days = Object.keys(req.body);
+    const docs = times.map((time, index) => {
+      return {
+        openingHours: time,
+        order: index,
+        dayOfTheWeek: days[index]
+      };
+    });
+    await openingHours.insertMany(docs);
+    res.end();
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
 
 module.exports = {
   index,
-  create
+  show,
+  update
 };
