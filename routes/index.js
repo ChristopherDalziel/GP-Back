@@ -11,6 +11,8 @@ router.use("/opening-hours", require("./openingHours"));
 
 router.use("/mail", require("./mail"));
 
+router.use("/admin_about", require("./about"));
+
 router.use("/vaccines", require("./vaccines"));
 
 router.use("/services", require("./services"));
