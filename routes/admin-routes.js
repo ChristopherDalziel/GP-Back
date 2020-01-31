@@ -10,7 +10,7 @@ const { checkAdmin } = require("../controllers/users_middleware");
 // router.get("/admin_dashboard", checkToken, checkAdmin, admin.dashboard);
 
 //staff
-router.get('/staff',  admin.staffs);
+router.get('/staff',  checkToken, checkAdmin, admin.staffs);
 router.get('/users', checkToken, checkAdmin, admin.allUsers);
 router.get('/user/:id', checkToken, checkAdmin, admin.getUserInfo);
 router.get('/appointments', checkToken, checkAdmin, admin.allAppointments);

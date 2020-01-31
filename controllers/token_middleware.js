@@ -23,10 +23,11 @@ const checkToken = (req, res, next) =>
     {
       if( err )
       {
+        console.log('line 28' + err.message)
         return res.json(
         {
           success: false,
-          message: 'Token is not valid'
+          message: 'You are not authorized to view this page'
         } );
       }
       else
@@ -42,7 +43,7 @@ const checkToken = (req, res, next) =>
     return res.json(
     {
       success: false,
-      message: 'Auth token is not supplied'
+      message: 'Please log in'
     } );
 
   }
