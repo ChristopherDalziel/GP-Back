@@ -35,8 +35,7 @@ async function allAppointments(req, res) {
   try {
     const query = Appointment.find({cancelled: false});
     query instanceof mongoose.Query; // true
-    const appointmentsList = await query.sort({createdAt
-      : 'descending'}); // Get the documents
+    const appointmentsList = await query.sort({dateTime: 'ascending'}); // Get the documents
     res.send(appointmentsList);
   } catch (err) {
     console.log(err.message)

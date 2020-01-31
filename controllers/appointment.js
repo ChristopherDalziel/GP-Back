@@ -12,7 +12,6 @@ async function newAppointment (req, res) {
     const { firstName, lastName, email, phone, dateTime, comment} = req.body;
 
     let newAppointment = new Appointment({
-      // user: userId,
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -34,7 +33,7 @@ async function newAppointment (req, res) {
 async function getAppointmentsByUser (req, res) {
  try {
   const email = req.decoded.email;
-  const query = Appointment.find({email: email, cancelled:false}).sort({createdAt: 'descending'});
+  const query = Appointment.find({email: email, cancelled:false}).sort({dateTime: 'ascending'});
   query instanceof mongoose.Query; // true
   const appointments =  await query; // Get the documents
   res.send(appointments);
