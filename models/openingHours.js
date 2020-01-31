@@ -3,6 +3,12 @@ const Schema = mongoose.Schema;
 
 const OpeningHoursSchema = new Schema(
   {
+    order: {
+      type: String
+    },
+    dayOfTheWeek: {
+      type: String
+    },
     openingHours: {
       type: String,
       required: true

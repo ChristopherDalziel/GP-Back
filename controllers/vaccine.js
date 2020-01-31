@@ -15,11 +15,12 @@ const show = async (req, res) => {
 };
 
 const create = async (req, res) => {
-  const { brand, description, manufacturer } = req.body;
+  const { brand, description, manufacturer, imageUrl } = req.body;
   const newVaccine = new Vaccine({
     brand,
     description,
-    manufacturer
+    manufacturer,
+    imageUrl
   });
   const savedVaccine = await newVaccine.save();
   res
