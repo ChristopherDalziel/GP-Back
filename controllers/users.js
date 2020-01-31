@@ -62,13 +62,13 @@ async function login(req, res) {
           admin: user.admin})
       } else {
         console.log("password failed")
-        res.status(403).send("Incorrect username or password");
+        res.status(403).send("Incorrect email or password");
       }
     } else {
-      res.status(403).send("Unable to locate user with this email");
+      res.status(403).send("Incorrect email or password");
     }
   } catch (err) {
-    res.status(400).send("Authentication failed, please check the request");
+    res.status(400).send("Authentication failed, unable to log in");
   }
 }
 

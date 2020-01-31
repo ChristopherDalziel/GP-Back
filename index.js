@@ -35,6 +35,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+//comment app.listen out for testing
+// app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
 module.exports = app;
