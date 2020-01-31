@@ -2,6 +2,10 @@ var bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 // const express = require("express");
 const uuidv1 = require("uuidv1");
+const format = require("date-fns/format");
+const parseISO =require('date-fns/parseISO');
+
+
 
 require("dotenv").config();
 
@@ -75,15 +79,12 @@ const resetPassword = async (req, res) => {
 const appointment = async (req, res) => {
   try {
     const { email, firstName, lastName, phone, dateTime, comment } = req.body;
-
-    if (comment == 'undefined') {
-      comment = 'No comment included'
-    }
+    let dateFormatted = format((parseISO(dateTime)), "PPPPp").toString();
 
     const output = `
     <p>Thank you for choosing Klinik Doctor Leong.</p>
     <h3>Here are your appointment details: </h3>
-    <h3>Date and Time: ${dateTime}</h3>
+    <h3>Date and Time: ${dateFormatted}</h3>
     <ul>  
       <li>First Name: ${firstName}</li>
       <li>Last Name: ${lastName}</li>
@@ -91,8 +92,8 @@ const appointment = async (req, res) => {
       <li>Phone: ${phone}</li>
       <li>Your comments: ${comment} </li>
       </ul>
-      <h5>To cancel your appointment, please phone the clinic directly, reply to this message, or via our website once you're logged in.</h5>
-      <h5>To Change your appointment, please cancel this appointment and make a new one.</h5>
+      <h5>To cancel your appointment, please phone the clinic directly, reply to this message, or via our website once you're logged in. If you do not have an account, once you've registered you will be able to view and cancel your appointments. </h5>
+      <h5>To change your appointment, please cancel this appointment and make a new one.</h5>
       <h5>Kind regards, <br>
       The team at Klinik Dr Leong</h5>
   `;
@@ -113,14 +114,11 @@ const appointment = async (req, res) => {
 const cancelAppointment = async (req, res) => {
   try {
     const { email, firstName, lastName, phone, dateTime, comment } = req.body;
-
-    if (comment == 'undefined') {
-      comment = 'No comment included'
-    }
+    let dateFormatted = format((parseISO(dateTime)), "PPPPp").toString();
 
     const output = `
     <h2>Your appointment below has been CANCELLED:</h2>
-    <h3>Date and Time: ${dateTime}</h3>
+    <h3>Date and Time: ${dateFormatted}</h3>
     <ul>  
       <li>First Name: ${firstName}</li>
       <li>Last Name: ${lastName}</li>
