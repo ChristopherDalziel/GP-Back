@@ -30,9 +30,6 @@
     "jest": "^24.9.0",
     "supertest": "^4.0.2"
   },
-  "jest": {
-    "testEnvironment": "node"
-  },
   "scripts": {
     "test": "jest --detectOpenHandles",
     "test:watch": "jest --watch",

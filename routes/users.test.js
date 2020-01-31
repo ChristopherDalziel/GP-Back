@@ -1,6 +1,8 @@
 const app = require("../index");
 const supertest = require('supertest');
 const request = supertest(app);
+const {login} = require('../testing_utils/login.js');
+require('dotenv').config();
 
 describe('Testing the login path', () => {
 
@@ -26,14 +28,12 @@ describe('Testing the login path', () => {
                   password:'wrongpassword'
                 })
       expect(response.status).toBe(403);
-      expect(response.body.message).toBe("Incorrect username or password")
     done();
   });
 
   it('Returns status 403 if fields are empty', async done => {
    const response = await request.post('/users/login');
    expect(response.status).toBe(403);
-   expect(response.error.message).toBe("Incorrect username or password")
     done();
   })
 });
@@ -61,7 +61,7 @@ describe('Testing the registration path', () => {
   it('Returns status 422 when email already exists', async done => {
     const response = await request.post('/users/register')
                 .send({
-                  username: 'klinikdrleong@gmail.com',
+                  email: 'klinikdrleong@gmail.com',
                   password:'wrongpassword',
                   firstName: "admin",
                   lastName: "admin",
@@ -78,3 +78,44 @@ describe('Testing the registration path', () => {
   })
 });
 
+describe('Testing the find user endpoint', () => {
+
+  beforeAll(async () => {
+    jest.setTimeout(20000);
+  })
+
+  it('Returns status 200 when token is valid', async done => {
+    await request.get('/users/find-user')
+                .send(
+                  {
+                    email: 'cam021928@coderacademy.edu.au',
+                    password: 'testtest2',
+                  })
+    expect(200);
+    expect(response.body.message).toBe({
+      id: '5e2e857b50398b0d54fc1e7e',
+      email: 'cam021928@coderacademy.edu.au',
+      admin: false,
+      phone: "1111111",
+      firstName: "testusernhan",
+      lastName: "testuser"
+    })
+    done();
+  });
+
+  it('Returns status 500 when account does not exist', async done => {
+    const response = await request.get('/users/find-users')
+                .send({
+                  email: 'notanaccount@gmail.com',
+                  password:'password'
+                })
+    expect(response.status).toBe(500);
+    done();
+  });
+
+  it('Returns status 500 if no email supplied', async done => {
+    await request.post('/users/find-user');
+    expect (500);
+    done();
+  })
+});
