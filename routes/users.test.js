@@ -26,14 +26,14 @@ describe('Testing the login path', () => {
                   password:'wrongpassword'
                 })
       expect(response.status).toBe(403);
-      expect(response.body.message).toBe("Incorrect username or password")
+     
     done();
   });
 
   it('Returns status 403 if fields are empty', async done => {
    const response = await request.post('/users/login');
    expect(response.status).toBe(403);
-   expect(response.error.message).toBe("Incorrect username or password")
+
     done();
   })
 });
