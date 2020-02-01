@@ -15,10 +15,11 @@ const show = async (req, res) => {
 };
 
 const create = async (req, res) => {
-  const { serviceName, serviceDescription } = req.body;
+  const { serviceName, serviceDescription, imageUrl } = req.body;
   const newService = new Service({
     serviceName,
-    serviceDescription
+    serviceDescription,
+    imageUrl
   });
   const savedService = await newService.save();
   res

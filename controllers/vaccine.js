@@ -1,7 +1,7 @@
 const Vaccine = require("../models/vaccines");
 
 const index = async (req, res) => {
-  const vaccines = await Vaccine.find();
+  const vaccines = await Vaccine.find().sort({description: 'ascending'});
   res.send(vaccines);
 };
 

@@ -10,6 +10,9 @@ const ServiceSchema = new Schema({
   serviceDescription:
   {
     type: String
+  },
+  imageUrl: {
+    type: String
   }
 }, { timestamps: true}, {collection: 'services'});
 
