@@ -20,3 +20,13 @@ exports.login = async () => {
    })
    return response.text
  }
+
+ exports.adminLogin = async () => {
+  const response = await request(app)
+   .post('/users/login')
+   .send({
+     email: 'nhantdang@gmail.com',
+     password: 'testtest'
+   })
+   return response.text
+ }
