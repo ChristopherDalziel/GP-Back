@@ -1,15 +1,26 @@
-const app = require("../index");
+const app = require("../app");
 const supertest = require('supertest');
+const mongoose = require('mongoose')
 const request = supertest(app);
-const {login} = require('../testing_utils/login.js');
+const {login, invalidLogin} = require('../testing_utils/login.js');
 require('dotenv').config();
 
-describe('Testing the login path', () => {
 
-  beforeAll(async () => {
-    jest.setTimeout(20000);
+  beforeAll(() => {
+    // jest.setTimeout(20000);
+    const dbConfig = { useNewUrlParser: true, useUnifiedTopology: true };
+    mongoose.connect(process.env.DB_URL, dbConfig, err => {
+      if (err) {
+        console.log(`Error: ${err.message}`);
+      }
+    });
+  });
+    
+  afterAll(() => {
+    mongoose.disconnect()
   })
 
+  describe('Testing the login path', () => {
   it('Returns status 200 when username and password correct', async done => {
     await request.post('/users/login')
                 .send(
@@ -36,14 +47,9 @@ describe('Testing the login path', () => {
    const response = await request.post('/users/login');
    expect(response.status).toBe(403);
     done();
-  })
-});
-
+  })});
+  
 describe('Testing the registration path', () => {
-
-  beforeAll(async () => {
-    jest.setTimeout(20000);
-  })
 
   it('Returns status 200 when all fields are completed', async done => {
     await request.post('/users/register')
@@ -81,42 +87,46 @@ describe('Testing the registration path', () => {
 
 describe('Testing the find user endpoint', () => {
 
-  beforeAll(async () => {
-    jest.setTimeout(20000);
-  })
 
   it('Returns status 200 when token is valid', async done => {
+    const {token} = JSON.parse(await login());
     await request.get('/users/find-user')
-                .send(
-                  {
-                    email: 'cam021928@coderacademy.edu.au',
-                    password: 'testtest2',
-                  })
+                .set('token', token)
+
     expect(200);
-    expect(response.body.message).toBe({
-      id: '5e2e857b50398b0d54fc1e7e',
-      email: 'cam021928@coderacademy.edu.au',
-      admin: false,
-      phone: "1111111",
-      firstName: "testusernhan",
-      lastName: "testuser"
-    })
+
     done();
   });
 
   it('Returns status 500 when account does not exist', async done => {
-    const response = await request.get('/users/find-users')
-                .send({
-                  email: 'notanaccount@gmail.com',
-                  password:'password'
-                })
-    expect(response.status).toBe(500);
+    const response = await invalidLogin();
+    expect (500);
     done();
   });
 
   it('Returns status 500 if no email supplied', async done => {
-    await request.post('/users/find-user');
+    await request.get('/users/find-user');
     expect (500);
     done();
   })
 });
+
+describe('Testing the edit user endpoint', () => {
+  it ('Returns status 200 if user exists', async done => {
+    await request.patch('/edit/5e3012acefb41821f8085e6c')
+                .send({
+                  email:"cypresstest@test.com",
+                  firstName: "Cypress",
+                  lastName: "Test",
+                  phone: '0412456789'
+                })
+    expect(200);
+    done();
+   })
+
+   it ('Returns status 500 if user does not exist', async done => {
+     await request.patch('/edit/12345');
+      expect(500);
+      done();
+   } )
+})
