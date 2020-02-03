@@ -1,12 +1,8 @@
 [
   {
-    "name": "Christopher Dalziel",
-    "about": "I like cake",
-    "imageUrl": "https://i.pinimg.com/originals/51/57/a7/5157a7873b970df8d1a2c5733bd4d8cc.jpg"
-  },
-  {
-    "name": "Dr Nhan",
-    "about": "React God",
-    "imageUrl": "https://i.pinimg.com/originals/51/57/a7/5157a7873b970df8d1a2c5733bd4d8cc.jpg"
+    "name": "Dr Leong See Yee",
+    "position": "Doctor",
+    "about": "Dr Leong See Yee obtained her medical degree from Crimea State Medical University, Ukraine. After completing her studies she returned to Malaysia to practice as a general practitioner. In her spare time, she enjoys spending time with her family and friends.",
+    "imageUrl": "https://res.cloudinary.com/acloudname10/image/upload/v1580704957/hsxvizknno3yzirk9g9h.jpg"
   }
 ]
