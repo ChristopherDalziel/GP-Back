@@ -19,17 +19,7 @@ afterAll(() => {
 })
 
 describe('Testing all the amdin services route', () => {
-  it('Returns status 200 when all fields are completed', async done => {
-    await request.post('/services/create')
-                .send(
-                  {
-                    serviceName: 'service-create-test',
-                    serviceDescription:"general check",
-                    imageUrl:"http:locaddaTEST.com"
-                  })
-    expect(200); 
-    done();
-  });
+
 
   it('Returns status 200 when get all services data', async done => {
     await request.get('/services')
@@ -42,7 +32,7 @@ describe('Testing all the amdin services route', () => {
     await request.put('/services/update/5e3566b0ee5b5d0a76ae8914')
                 .send(
                   {
-                    serviceName: 'service-create-test',
+                    serviceName:"service-create-test",
                     serviceDescription:"test service update",
                     imageUrl:"http:locaddaTESTupdate.com"
                   })
@@ -58,10 +48,10 @@ describe('Testing all the amdin services route', () => {
   });
 
 
-  // it('Returns status 200 when data been deleted successfully', async done => {
+  it('Returns status 200 when data been deleted successfully', async done => {
 
-  //   await request.delete('/services/delete/5e3566b0ee5b5d0a76ae8914')
-  //   expect(200); 
-  //   done();
-  // });
+    await request.delete('/services/delete/5e3566b0ee5b5d0a76ae8914')
+    expect(200); 
+    done();
+  });
 })

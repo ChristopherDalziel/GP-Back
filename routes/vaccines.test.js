@@ -33,7 +33,7 @@ describe('Testing all the amdin vaccines data route', () => {
   });
 
   it('Returns status 200 when get all vaccines data', async done => {
-    await request.get('/')
+    await request.get('/vaccines/')
     expect(200); 
     done();
   });
@@ -53,17 +53,17 @@ describe('Testing all the amdin vaccines data route', () => {
 
   it('Returns status 200 when can show vaccine data', async done => {
 
-    await request.get('vaccines/5e376b250dba6c18c46a8416')
+    await request.get('/vaccines/5e376b250dba6c18c46a8416')
               
     expect(200); 
     done();
   });
 
 
-  // it('Returns status 200 when vaccine data been deleted successfully', async done => {
+  it('Returns status 200 when vaccine data been deleted successfully', async done => {
 
-  //   await request.delete('vaccines/delete/5e376b250dba6c18c46a8416')
-  //   expect(200); 
-  //   done();
-  // });
+    await request.delete('/vaccines/delete/5e376b250dba6c18c46a8416')
+    expect(200); 
+    done();
+  });
 })
