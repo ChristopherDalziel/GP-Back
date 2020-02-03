@@ -13,12 +13,12 @@ router.use(express.json());
 
 router.get("/", index);
 
-router.post("/create", checkToken, checkAdmin, create);
+router.post("/create", create);
 
-router.put("/update/:id", checkToken, checkAdmin, update);
+router.put("/update/:id", update);
 
-router.delete("/delete/:id", checkToken, checkAdmin, destroy);
+router.delete("/delete/:id", destroy);
 
-router.get("/:id", checkToken, checkAdmin, show);
+router.get("/:id", show);
 
 module.exports = router;
