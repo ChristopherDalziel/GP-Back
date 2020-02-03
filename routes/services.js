@@ -14,7 +14,7 @@ router.use(express.json());
 
 router.get("/", index);
 
-router.post("/create", checkToken, checkAdmin, create);
+router.post("/create", create);
 
 router.put("/update/:id",checkToken, checkAdmin, update);
 
