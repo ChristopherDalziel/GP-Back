@@ -5,7 +5,7 @@ const index = async (req, res) => {
   res.send(vaccines);
 };
 
-const show = async (req, res) => {
+async function show (req, res) {
   try {
     const service = await Service.findById(req.params.id);
     res.send(service);
@@ -14,7 +14,7 @@ const show = async (req, res) => {
   }
 };
 
-const create = async (req, res) => {
+async function create (req, res) {
   const { serviceName, serviceDescription, imageUrl } = req.body;
   const newService = new Service({
     serviceName,
