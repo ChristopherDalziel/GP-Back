@@ -45,42 +45,31 @@ test('', () => {
 //     done();
 //   });
 
-//   it('Returns status 200 when the updated data been found ', async done => {
-//       // beforeAll(async () => {
-//       //   jest.setTimeout(20000);
-//       // })
+  it('Returns status 200 when the updated data been found ', async done => {
+  
+      await request.put('/admin/edit_staff/5e33b3312c79da572a8e26ec')        
+      expect(200); 
+      done();
+  });
 
-//       await request.put('/admin/edit_staff/5e33a75ebfc584512d19dd1e')        
-//       expect(200); 
-//       done();
-//   });
-
-//   it('Returns status 200 when data been updated successfully', async done => {
-
-//     // beforeAll(async () => {
-//     //   jest.setTimeout(20000);
-//     // })
-
-//     await request.put(`/admin/update_staff/5e33a75ebfc584512d19dd1e`)
-//                 .send(
-//                   {
-//                     name: 'hneg-test-update',
-//                     position:"doctor-update",
-//                     aboutText: 'i am a doctor for test update',
-//                     imageUrl:"http:locaddaEDIT.com"
-//                   })
-//     expect(200); 
-//     done();
-//   });
+  it('Returns status 200 when data been updated successfully', async done => {
+    await request.put('/admin/update_staff/5e33b3312c79da572a8e26ec')
+                .send(
+                  {
+                    name: 'hneg-test-update',
+                    position:"doctor-update",
+                    aboutText: 'i am a doctor for test update',
+                    imageUrl:"http:locaddaEDIT.com"
+                  })
+    expect(200); 
+    done();
+  });
 
 
-//   it('Returns status 200 when data been deleted successfully', async done => {
+  // it('Returns status 200 when data been deleted successfully', async done => {
 
-//     // beforeAll(async () => {
-//     //   jest.setTimeout(20000);
-//     // })
-//     await request.delete('/admin/delete_staff/5e33a75ebfc584512d19dd1e')
-//     expect(200); 
-//     done();
-//   });
-// })
+  //   await request.delete('/admin/delete_staff/5e33b3312c79da572a8e26ec')
+  //   expect(200); 
+  //   done();
+  // });
+
