@@ -8,8 +8,7 @@ const {
   destroy,
   show
 } = require("../controllers/vaccine");
-const { checkToken } = require("../controllers/token_middleware");
-const { checkAdmin } = require("../controllers/users_middleware");
+
 
 router.use(express.json());
 

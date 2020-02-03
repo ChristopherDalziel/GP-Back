@@ -20,7 +20,7 @@ afterAll(() => {
 
 describe('Testing all the amdin services route', () => {
   it('Returns status 200 when all fields are completed', async done => {
-    await request.post('/create')
+    await request.post('/services/create')
                 .send(
                   {
                     serviceName: 'service-create-test',
@@ -32,14 +32,14 @@ describe('Testing all the amdin services route', () => {
   });
 
   it('Returns status 200 when get all services data', async done => {
-    await request.get('/')
+    await request.get('/services')
     expect(200); 
     done();
   });
 
 
   it('Returns status 200 when the service data been updated successfully', async done => {
-    await request.put('/update/5e3566b0ee5b5d0a76ae8914')
+    await request.put('/services/update/5e3566b0ee5b5d0a76ae8914')
                 .send(
                   {
                     serviceName: 'service-create-test',
@@ -51,7 +51,7 @@ describe('Testing all the amdin services route', () => {
   });
   it('Returns status 200 when can show service data', async done => {
 
-    await request.get('/5e3566b0ee5b5d0a76ae8914')
+    await request.get('/services/5e3566b0ee5b5d0a76ae8914')
               
     expect(200); 
     done();
@@ -60,7 +60,7 @@ describe('Testing all the amdin services route', () => {
 
   // it('Returns status 200 when data been deleted successfully', async done => {
 
-  //   await request.delete('/delete/5e3566b0ee5b5d0a76ae8914')
+  //   await request.delete('/services/delete/5e3566b0ee5b5d0a76ae8914')
   //   expect(200); 
   //   done();
   // });
