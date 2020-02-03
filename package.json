@@ -32,7 +32,7 @@
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "test": "jest --detectOpenHandles",
+    "test": "jest",
     "test:watch": "jest --watch",
     "dev": "nodemon index.js",
     "start": "nodemon index.js"
