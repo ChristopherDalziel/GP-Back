@@ -2,7 +2,7 @@ const app = require("../app");
 const supertest = require('supertest');
 const mongoose = require('mongoose')
 const request = supertest(app);
-const {login, invalidLogin} = require('../testing_utils/login.js');
+const {login, invalidLogin, adminLogin} = require('../testing_utils/login.js');
 require('dotenv').config();
 
 

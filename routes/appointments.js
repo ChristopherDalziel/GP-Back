@@ -6,7 +6,6 @@ const {newAppointment, getAppointmentsByUser, cancelAppointment} = require('../c
 
 router.post('/new', newAppointment);
 router.patch('/:id', cancelAppointment);
-router.get('/list', );
 router.get('/user_appointments', checkToken, getAppointmentsByUser)
 
 module.exports = router;
