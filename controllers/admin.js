@@ -9,11 +9,6 @@ const subDays = require("date-fns/subDays");
 
 //staff
 const Staff = require("../models/staff");
-const AWS = require("aws-sdk");
-const fs = require("fs");
-const fileType = require("file-type");
-const bluebird = require("bluebird");
-const multiparty = require("multiparty");
 
 let app = express();
 app.use(express.json());
@@ -23,23 +18,23 @@ async function allUsers(req, res) {
   try {
     const query = User.find();
     query instanceof mongoose.Query; // true
-    const usersList = await query.sort({lastName: 'descending'}); // Get the documents
+    const usersList = await query.sort({ lastName: "descending" }); // Get the documents
     res.send(usersList);
   } catch (err) {
-    console.log(err.message)
-    res.send(err.message)
+    console.log(err.message);
+    res.send(err.message);
   }
 }
 
 async function allAppointments(req, res) {
   try {
-    const query = Appointment.find({cancelled: false});
+    const query = Appointment.find({ cancelled: false });
     query instanceof mongoose.Query; // true
-    const appointmentsList = await query.sort({dateTime: 'ascending'}); // Get the documents
+    const appointmentsList = await query.sort({ dateTime: "ascending" }); // Get the documents
     res.send(appointmentsList);
   } catch (err) {
-    console.log(err.message)
-    res.send(err.message)
+    console.log(err.message);
+    res.send(err.message);
   }
 }
 
@@ -57,7 +52,7 @@ function staffs(req, res) {
 //Create new Staff member
 async function addStaff(req, res) {
   try {
-    const { name, position,aboutText, imageUrl } = req.body;
+    const { name, position, aboutText, imageUrl } = req.body;
     let newStaff = new Staff({
       name: name,
       position: position,
@@ -119,29 +114,23 @@ async function deleteStaff(req, res) {
 }
 
 const getUserInfo = async (req, res) => {
-
   const id = req.params.id;
 
   try {
-    await User.findById(id)
-    .then((user) => {
+    await User.findById(id).then(user => {
       res.send({
         email: user.email,
         admin: user.admin,
         phone: user.phone,
         firstName: user.firstName,
         lastName: user.lastName
-      })
-    }
-    )
+      });
+    });
   } catch (err) {
-    console.log(err.message)
-    res.status(500).send(err.message)
+    console.log(err.message);
+    res.status(500).send(err.message);
   }
-}
-
-
-
+};
 
 module.exports = {
   staffs,
