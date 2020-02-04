@@ -39,6 +39,7 @@ async function getAppointmentsByUser (req, res) {
   res.send(appointments);
  } catch(err) {
    console.log(err);
+   res.status(500).send(err.message)
  }
 }
 
