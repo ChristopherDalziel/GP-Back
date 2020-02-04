@@ -29,13 +29,13 @@ describe('Testing all the amdin services route', () => {
     done();
   });
 
-  it('Returns status 403 if not admin ', async done => {
-    const {token} = JSON.parse(await login());
-    await request.post('/services')
-                .set('token', token)
-      expect(403);
-      done();
-  });
+  // it('Returns status 403 if not admin ', async done => {
+  //   const {token} = JSON.parse(await login());
+  //   await request.post('/services')
+  //               .set('token', token)
+  //     expect(403);
+  //     done();
+  // });
 
 
   it('Returns status 403 if not admin to get the service data ', async done => {
@@ -120,7 +120,7 @@ describe('Testing the create path', () => {
 
   it('Returns status 200 if admin and required fields completed and service ID exists', async done => {
     const {token} = JSON.parse(await adminLogin());
-    await request.create('/services/create', )
+    await request.post('/services/create', )
                 .set('token', token)
                 .send({
                   serviceName: "testing edcreateit service",

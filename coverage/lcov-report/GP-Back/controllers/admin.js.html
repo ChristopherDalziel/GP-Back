@@ -22,9 +22,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.43% </span>
+                <span class="strong">26.15% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>22/70</span>
+                <span class='fraction'>17/65</span>
             </div>
         
             
@@ -43,9 +43,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.88% </span>
+                <span class="strong">26.56% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>22/69</span>
+                <span class='fraction'>17/64</span>
             </div>
         
             
@@ -200,37 +200,21 @@
 <a name='L142'></a><a href='#L142'>142</a>
 <a name='L143'></a><a href='#L143'>143</a>
 <a name='L144'></a><a href='#L144'>144</a>
-<a name='L145'></a><a href='#L145'>145</a>
-<a name='L146'></a><a href='#L146'>146</a>
-<a name='L147'></a><a href='#L147'>147</a>
-<a name='L148'></a><a href='#L148'>148</a>
-<a name='L149'></a><a href='#L149'>149</a>
-<a name='L150'></a><a href='#L150'>150</a>
-<a name='L151'></a><a href='#L151'>151</a>
-<a name='L152'></a><a href='#L152'>152</a>
-<a name='L153'></a><a href='#L153'>153</a>
-<a name='L154'></a><a href='#L154'>154</a>
-<a name='L155'></a><a href='#L155'>155</a>
-<a name='L156'></a><a href='#L156'>156</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<a name='L145'></a><a href='#L145'>145</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -331,15 +315,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -353,10 +334,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -377,11 +355,6 @@ const subDays = require("date-fns/subDays");
 &nbsp;
 //staff
 const Staff = require("../models/staff");
-const AWS = require("aws-sdk");
-const fs = require("fs");
-const fileType = require("file-type");
-const bluebird = require("bluebird");
-const multiparty = require("multiparty");
 &nbsp;
 let app = express();
 app.use(express.json());
@@ -391,23 +364,23 @@ async function <span class="fstat-no" title="function not covered" >allUsers(</s
 <span class="cstat-no" title="statement not covered" >  try {</span>
     const query = <span class="cstat-no" title="statement not covered" >User.find();</span>
 <span class="cstat-no" title="statement not covered" >    query instanceof mongoose.Query; </span>// true
-    const usersList = <span class="cstat-no" title="statement not covered" >await query.sort({lastName: 'descending'});</span> // Get the documents
+    const usersList = <span class="cstat-no" title="statement not covered" >await query.sort({ lastName: "descending" });</span> // Get the documents
 <span class="cstat-no" title="statement not covered" >    res.send(usersList);</span>
   } catch (err) {
-<span class="cstat-no" title="statement not covered" >    console.log(err.message)</span>
-<span class="cstat-no" title="statement not covered" >    res.send(err.message)</span>
+<span class="cstat-no" title="statement not covered" >    console.log(err.message);</span>
+<span class="cstat-no" title="statement not covered" >    res.send(err.message);</span>
   }
 }
 &nbsp;
 async function <span class="fstat-no" title="function not covered" >allAppointments(</span>req, res) {
 <span class="cstat-no" title="statement not covered" >  try {</span>
-    const query = <span class="cstat-no" title="statement not covered" >Appointment.find({cancelled: false});</span>
+    const query = <span class="cstat-no" title="statement not covered" >Appointment.find({ cancelled: false });</span>
 <span class="cstat-no" title="statement not covered" >    query instanceof mongoose.Query; </span>// true
-    const appointmentsList = <span class="cstat-no" title="statement not covered" >await query.sort({dateTime: 'ascending'});</span> // Get the documents
+    const appointmentsList = <span class="cstat-no" title="statement not covered" >await query.sort({ dateTime: "ascending" });</span> // Get the documents
 <span class="cstat-no" title="statement not covered" >    res.send(appointmentsList);</span>
   } catch (err) {
-<span class="cstat-no" title="statement not covered" >    console.log(err.message)</span>
-<span class="cstat-no" title="statement not covered" >    res.send(err.message)</span>
+<span class="cstat-no" title="statement not covered" >    console.log(err.message);</span>
+<span class="cstat-no" title="statement not covered" >    res.send(err.message);</span>
   }
 }
 &nbsp;
@@ -425,7 +398,7 @@ function staffs(req, res) {
 //Create new Staff member
 async function <span class="fstat-no" title="function not covered" >addStaff(</span>req, res) {
 <span class="cstat-no" title="statement not covered" >  try {</span>
-    const { name, position,aboutText, imageUrl } = <span class="cstat-no" title="statement not covered" >req.body;</span>
+    const { name, position, aboutText, imageUrl } = <span class="cstat-no" title="statement not covered" >req.body;</span>
     let newStaff = <span class="cstat-no" title="statement not covered" >new Staff({</span>
       name: name,
       position: position,
@@ -487,29 +460,23 @@ async function <span class="fstat-no" title="function not covered" >deleteStaff(
 }
 &nbsp;
 const getUserInfo = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-&nbsp;
   const id = <span class="cstat-no" title="statement not covered" >req.params.id;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  try {</span>
-<span class="cstat-no" title="statement not covered" >    await User.findById(id)</span>
-    .then(<span class="fstat-no" title="function not covered" >(u</span>ser) =&gt; {
+<span class="cstat-no" title="statement not covered" >    await User.findById(id).then(<span class="fstat-no" title="function not covered" >us</span>er =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      res.send({</span>
         email: user.email,
         admin: user.admin,
         phone: user.phone,
         firstName: user.firstName,
         lastName: user.lastName
-      })
-    }
-    )
+      });
+    });
   } catch (err) {
-<span class="cstat-no" title="statement not covered" >    console.log(err.message)</span>
-<span class="cstat-no" title="statement not covered" >    res.status(500).send(err.message)</span>
+<span class="cstat-no" title="statement not covered" >    console.log(err.message);</span>
+<span class="cstat-no" title="statement not covered" >    res.status(500).send(err.message);</span>
   }
-}
-&nbsp;
-&nbsp;
-&nbsp;
+};
 &nbsp;
 module.exports = {
   staffs,
@@ -528,7 +495,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Feb 04 2020 15:02:52 GMT+1100 (Australian Eastern Daylight Time)
+                at Tue Feb 04 2020 16:01:40 GMT+1100 (Australian Eastern Daylight Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

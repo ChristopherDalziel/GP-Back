@@ -63,8 +63,6 @@ describe('Testing all the amdin vaccines route', () => {
 
 
 
-
-
 describe('Testing the update path', () => {
 
   it('Returns status 403 if not admin ', async done => {
@@ -89,6 +87,7 @@ describe('Testing the update path', () => {
       expect(200);
       done();
   });
+
 
   it('Returns status 400 if admin and required fields missing', async done => {
     const {token} = JSON.parse(await adminLogin());
@@ -130,7 +129,7 @@ describe('Testing the create path', () => {
 
   it('Returns status 200 if admin and required fields completed and service ID exists', async done => {
     const {token} = JSON.parse(await adminLogin());
-    await request.create('/vaccines/create', )
+    await request.post('/vaccines/create', )
                 .set('token', token)
                 .send({
                   serviceName: "testing edcreateit service",
