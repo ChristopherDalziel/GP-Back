@@ -2,7 +2,8 @@ let jwt = require( 'jsonwebtoken' );
 const token_secret = process.env.TOKEN_SECRET;
 const User = require('../models/user');
 
-
+//checking the validity of a token sent in request header
+//if valid the token will be decoded and return the sender's email and admin status
 const checkToken = (req, res, next) =>
 {
   // Express headers are auto converted to lowercase
@@ -49,7 +50,7 @@ const checkToken = (req, res, next) =>
   }
 };
 
-//checking the password token sent in the email for password reset
+//checking the password token sent in the email for password reset and comparing it with the token generated and stored in DB when user requested for password reset
 const checkPasswordToken = async (req, res) => {
   try {
     const {token} = req.headers;
