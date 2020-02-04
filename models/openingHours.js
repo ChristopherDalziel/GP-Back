@@ -4,10 +4,12 @@ const Schema = mongoose.Schema;
 const OpeningHoursSchema = new Schema(
   {
     order: {
-      type: String
+      type: String,
+      required: true
     },
     dayOfTheWeek: {
-      type: String
+      type: String,
+      required: true
     },
     openingHours: {
       type: String,
