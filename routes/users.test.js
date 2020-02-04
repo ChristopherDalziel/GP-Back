@@ -7,7 +7,7 @@ require('dotenv').config();
 
 
   beforeAll(() => {
-    // jest.setTimeout(20000);
+  
     const dbConfig = { useNewUrlParser: true, useUnifiedTopology: true };
     mongoose.connect(process.env.DB_URL, dbConfig, err => {
       if (err) {
