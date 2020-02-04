@@ -21,6 +21,7 @@ let transporter = nodemailer.createTransport({
   }
 });
 
+//Contents obtained from the general enquiry contact form
 const send = (req, res) => {
   const output = `
     <p>You have a new contact request</p>
@@ -76,6 +77,7 @@ const resetPassword = async (req, res) => {
   }
 }
 
+//request body obtained from appointment booking form
 const appointment = async (req, res) => {
   try {
     const { email, firstName, lastName, phone, dateTime, comment } = req.body;
@@ -111,6 +113,7 @@ const appointment = async (req, res) => {
   }
 }
 
+//contents to send in email confirming cancellation of appointment
 const cancelAppointment = async (req, res) => {
   try {
     const { email, firstName, lastName, phone, dateTime, comment } = req.body;
