@@ -1,7 +1,7 @@
 const Vaccine = require("../models/vaccines");
 
 const index = async (req, res) => {
-  const vaccines = await Vaccine.find().sort({description: 'ascending'});
+  const vaccines = await Vaccine.find().sort({ description: "ascending" });
   res.send(vaccines);
 };
 
@@ -15,18 +15,23 @@ const show = async (req, res) => {
 };
 
 const create = async (req, res) => {
-  const { brand, description, manufacturer, imageUrl } = req.body;
-  const newVaccine = new Vaccine({
-    brand,
-    description,
-    manufacturer,
-    imageUrl
-  });
-  const savedVaccine = await newVaccine.save();
-  res
-    .send(savedVaccine)
-    .then(() => console.log("New Vaccine Added!"), res.redirect("/vaccines"))
-    .catch(error => res.status(400).json("Error" + error));
+  try {
+    const { brand, description, manufacturer, imageUrl } = req.body;
+    const newVaccine = new Vaccine({
+      brand,
+      description,
+      manufacturer,
+      imageUrl
+    });
+
+    const savedVaccine = await newVaccine.save();
+    res
+      .send(savedVaccine)
+      .then(() => console.log("New Vaccine Added!"), res.redirect("/vaccines"));
+  } catch (err) {
+    console.log(err.message);
+    res.status(422).send({ err });
+  }
 };
 
 const destroy = (req, res, next) => {
