@@ -20,6 +20,7 @@ async function allUsers(req, res) {
   }
 }
 
+//delete appointments from the same day last week to reduce database clutter
 //retrieve all appointments that have not been cancelled, sorted by date time of appointment
 async function allAppointments(req, res) {
   const deleteOldAppointment = () => {
