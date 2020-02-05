@@ -25,8 +25,8 @@ async function allUsers(req, res) {
 async function allAppointments(req, res) {
   const deleteOldAppointment = () => {
     let today = new Date();
-    let dateLastWeek = subDays(today, 7)
-    Appointment.deleteMany({ dateTime: dateLastWeek }, function (err) {
+    let yesterday = subDays(today, 2)
+    Appointment.deleteMany({ dateTime: yesterday }, function (err) {
      if(err) console.log(err);
      console.log("Deletion OK");
     })

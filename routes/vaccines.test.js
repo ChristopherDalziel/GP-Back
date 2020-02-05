@@ -143,14 +143,8 @@ describe('Testing the create path', () => {
       expect(400);
       done();
   });
-  
-
-
 
 })
-
-
-
 
 describe('Testing the delete path', () => {
   it('Returns status 200 if admin and service ID exists', async done => {

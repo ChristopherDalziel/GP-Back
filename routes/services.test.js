@@ -139,15 +139,8 @@ describe('Testing the create path', () => {
       expect(200);
       done();
   });
-  
-
 
 })
-
-
-
-
-
 
 
 describe('Testing the delete path', () => {
