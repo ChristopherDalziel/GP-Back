@@ -1,5 +1,4 @@
 const nodemailer = require("nodemailer");
-// const express = require("express");
 const uuidv1 = require("uuidv1");
 const format = require("date-fns/format");
 const parseISO =require('date-fns/parseISO');
@@ -72,13 +71,13 @@ const resetPassword = async (req, res) => {
   } catch (err) {
     res.status(500).send(err.message);
   }
-}
+};
 
 //request body obtained from appointment booking form
 const appointment = async (req, res) => {
   try {
     const { email, firstName, lastName, phone, dateTime, comment } = req.body;
-    let dateFormatted = format((parseISO(dateTime)), "PPPPp").toString();
+    let dateFormatted = format(parseISO(dateTime), "PPPPp").toString();
 
     const output = `
     <p>Thank you for choosing Klinik Doctor Leong.</p>
@@ -105,16 +104,16 @@ const appointment = async (req, res) => {
     });
     res.status(200).end();
   } catch (err) {
-    console.log(err.message)
+    console.log(err.message);
     res.status(500).send(err.message);
   }
-}
+};
 
 //contents to send in email confirming cancellation of appointment
 const cancelAppointment = async (req, res) => {
   try {
     const { email, firstName, lastName, phone, dateTime, comment } = req.body;
-    let dateFormatted = format((parseISO(dateTime)), "PPPPp").toString();
+    let dateFormatted = format(parseISO(dateTime), "PPPPp").toString();
 
     const output = `
     <h2>Your appointment below has been CANCELLED:</h2>
@@ -139,8 +138,8 @@ const cancelAppointment = async (req, res) => {
     });
     res.status(200).end();
   } catch (err) {
-    console.log(err.message)
+    console.log(err.message);
     res.status(500).send(err.message);
   }
-}
+};
 module.exports = { send, resetPassword, appointment, cancelAppointment };
