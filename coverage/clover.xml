@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1580792500056" clover="3.2.0">
-  <project timestamp="1580792500056" name="All files">
-    <metrics statements="485" coveredstatements="296" conditionals="39" coveredconditionals="12" methods="63" coveredmethods="21" elements="587" coveredelements="329" complexity="0" loc="485" ncloc="485" packages="5" files="29" classes="29"/>
+<coverage generated="1580792903052" clover="3.2.0">
+  <project timestamp="1580792903052" name="All files">
+    <metrics statements="485" coveredstatements="298" conditionals="39" coveredconditionals="12" methods="63" coveredmethods="21" elements="587" coveredelements="331" complexity="0" loc="485" ncloc="485" packages="5" files="29" classes="29"/>
     <package name="GP-Back">
       <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="app.js" path="/Users/caiheng/Desktop/MERN-stack/GP-Back/app.js">
@@ -22,7 +22,7 @@
       </file>
     </package>
     <package name="GP-Back.controllers">
-      <metrics statements="332" coveredstatements="143" conditionals="39" coveredconditionals="12" methods="59" coveredmethods="17"/>
+      <metrics statements="332" coveredstatements="145" conditionals="39" coveredconditionals="12" methods="59" coveredmethods="17"/>
       <file name="about.js" path="/Users/caiheng/Desktop/MERN-stack/GP-Back/controllers/about.js">
         <metrics statements="11" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="7" type="stmt"/>
@@ -268,7 +268,7 @@
         <line num="69" count="7" type="stmt"/>
       </file>
       <file name="users.js" path="/Users/caiheng/Desktop/MERN-stack/GP-Back/controllers/users.js">
-        <metrics statements="68" coveredstatements="37" conditionals="8" coveredconditionals="4" methods="10" coveredmethods="5"/>
+        <metrics statements="68" coveredstatements="39" conditionals="8" coveredconditionals="4" methods="10" coveredmethods="5"/>
         <line num="1" count="7" type="stmt"/>
         <line num="2" count="7" type="stmt"/>
         <line num="3" count="7" type="stmt"/>
@@ -283,16 +283,16 @@
         <line num="16" count="43" type="stmt"/>
         <line num="19" count="7" type="stmt"/>
         <line num="21" count="7" type="stmt"/>
-        <line num="22" count="42" type="stmt"/>
+        <line num="22" count="43" type="stmt"/>
         <line num="27" count="3" type="stmt"/>
         <line num="28" count="3" type="stmt"/>
         <line num="29" count="3" type="stmt"/>
         <line num="30" count="2" type="stmt"/>
         <line num="38" count="2" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="44" count="3" type="stmt"/>
-        <line num="45" count="3" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="44" count="2" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
         <line num="51" count="46" type="stmt"/>
         <line num="52" count="46" type="stmt"/>
         <line num="53" count="46" type="stmt"/>
