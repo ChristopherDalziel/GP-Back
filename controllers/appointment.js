@@ -1,11 +1,5 @@
-const express = require("express");
 const Appointment = require("../models/appointment");
-const cors = require("cors");
 const mongoose = require('mongoose');
-
-let app = express();
-app.use(express.json());
-app.use(cors());
 
 //creating a new appointment and adding to database
 async function newAppointment (req, res) {

@@ -1,11 +1,8 @@
-var bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 // const express = require("express");
 const uuidv1 = require("uuidv1");
 const format = require("date-fns/format");
 const parseISO =require('date-fns/parseISO');
-
-
 
 require("dotenv").config();
 

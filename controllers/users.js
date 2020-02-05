@@ -1,12 +1,6 @@
-const express = require("express");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require( 'bcrypt' );
-const cors = require("cors");
-
-let app = express();
-app.use(express.json());
-app.use(cors());
 
 //hashing the user's password using bcrypt
 const hashPassword = async password => {
