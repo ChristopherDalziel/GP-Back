@@ -20,7 +20,6 @@ async function newAppointment (req, res) {
     
     res.status(200).send(appointment)
   } catch (err) {
-    console.log(err.message)
     res.status(500).send(err.message);
   }
 }
@@ -35,7 +34,6 @@ async function getAppointmentsByUser (req, res) {
   const appointments =  await query; // Get the documents
   res.send(appointments);
  } catch(err) {
-   console.log(err);
    res.status(500).send(err.message)
  }
 }

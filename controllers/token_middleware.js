@@ -24,7 +24,6 @@ const checkToken = (req, res, next) =>
     {
       if( err )
       {
-        console.log('line 28' + err.message)
         return res.json(
         {
           success: false,

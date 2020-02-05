@@ -38,7 +38,6 @@ async function register(req, res) {
       admin: user.admin})
     // res.redirect('back')
   } catch (err) {
-    console.log(err.message)
     res.status(422).send({err});
   }
 }
@@ -53,12 +52,10 @@ async function login(req, res) {
     if (user) {
       const correctPassword = await comparePassword(password, user.password);
       if (correctPassword) {
-        console.log("password ok")
         const token = createToken(user);
         res.send({token: token,
           admin: user.admin})
       } else {
-        console.log("password failed")
         res.status(403).send("Incorrect email or password");
       }
     } else {
@@ -117,7 +114,6 @@ const findUser = async (req, res) => {
     }
     )
   } catch (err) {
-    console.log(err.message)
     res.status(500).send(err.message)
   }
 }
@@ -143,7 +139,6 @@ const editUser = async (req, res) => {
   })
 }
 catch (err) {
-    console.log(err.message);
     res.status(500).send(err.message )
   }
 }
