@@ -1,12 +1,7 @@
-const express = require("express");
 const Appointment = require("../models/appointment");
-const cors = require("cors");
 const mongoose = require('mongoose');
 
-let app = express();
-app.use(express.json());
-app.use(cors());
-
+//creating a new appointment and adding to database
 async function newAppointment (req, res) {
   try {
     const { firstName, lastName, email, phone, dateTime, comment} = req.body;
@@ -30,6 +25,8 @@ async function newAppointment (req, res) {
   }
 }
 
+//getting appointments for user whose email matches the token sent in request
+//filtered to show only appointments not cancelled, sorted in order of date
 async function getAppointmentsByUser (req, res) {
  try {
   const email = req.decoded.email;
@@ -43,6 +40,7 @@ async function getAppointmentsByUser (req, res) {
  }
 }
 
+//Update the cancelled boolean from false to true but entry remains in database
 async function cancelAppointment (req, res, next) {
     Appointment.findByIdAndUpdate({_id: req.params.id}, {cancelled: true}, (error, appointment) => {
       if (error) {

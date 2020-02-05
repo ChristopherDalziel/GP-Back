@@ -1,8 +1,6 @@
-const express = require('express');
-const router = express.Router();
 const User = require('../models/user');
 
-//checking the role of the user, if admin then can progress to next
+//checking the role of the user, if admin then can progress to next route
 const checkAdmin = (req, res, next) => {
   if (req.decoded.admin == true) {
     next();

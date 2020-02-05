@@ -1,24 +1,17 @@
-const express = require("express");
 const User = require("../models/user");
 const Appointment = require("../models/appointment");
 const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-const cors = require("cors");
-const subDays = require("date-fns/subDays");
 
 //staff
 const Staff = require("../models/staff");
 
-let app = express();
-app.use(express.json());
-app.use(cors());
 
+//retrieve all users in order of last name
 async function allUsers(req, res) {
   try {
     const query = User.find();
     query instanceof mongoose.Query; // true
-    const usersList = await query.sort({ lastName: "descending" }); // Get the documents
+    const usersList = await query.sort({ lastName: "ascending" }); // Get the documents
     res.send(usersList);
   } catch (err) {
     console.log(err.message);
@@ -26,6 +19,7 @@ async function allUsers(req, res) {
   }
 }
 
+//retrieve all appointments that have not been cancelled, sorted by date time of appointment
 async function allAppointments(req, res) {
   try {
     const query = Appointment.find({ cancelled: false });
@@ -113,6 +107,7 @@ async function deleteStaff(req, res) {
   }
 }
 
+//get info for a single user
 const getUserInfo = async (req, res) => {
   const id = req.params.id;
 

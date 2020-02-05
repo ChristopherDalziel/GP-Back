@@ -1,28 +1,25 @@
-const express = require("express");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require( 'bcrypt' );
-const cors = require("cors");
 
-let app = express();
-app.use(express.json());
-app.use(cors());
-
+//hashing the user's password using bcrypt
 const hashPassword = async password => {
   return await bcrypt.hash(password, 10);
 };
 
+//comparing the hashed password entered to the hashed password stored in database
 const comparePassword = async (password, hashedPassword) => {
   return await bcrypt.compare(password, hashedPassword);
 };
 
 const token_secret = process.env.TOKEN_SECRET;
 
+//creating a JWT
 const createToken = ({ email, admin }) => {
   return jwt.sign({ email, admin }, token_secret, { expiresIn: "24h" });
 };
 
-//registration path
+//registration path, will hash password prior to storing, admin status false by default
 async function register(req, res) {
   try {
     const { firstName, lastName, email, phone, password } = req.body;
@@ -46,7 +43,7 @@ async function register(req, res) {
   }
 }
 
-//login path
+//login path - finds a valid email, checks the password and if ok then creates a new token
 async function login(req, res) {
   try {
     const { email, password } = req.body;
@@ -72,7 +69,7 @@ async function login(req, res) {
   }
 }
 
-//reset password path
+//reset password path, checks password token for validity before proceeding
 async function resetPassword(req, res) {
   try {
     const {password, token} = req.body;
@@ -98,7 +95,7 @@ async function resetPassword(req, res) {
   }
 }
 
-//find one user path
+//find one user path by grabbing email after decoding the token sent
 const findUser = async (req, res) => {
 
   const email = req.decoded.email;
@@ -125,6 +122,7 @@ const findUser = async (req, res) => {
   }
 }
 
+//Edit user info for a single user - searches for a valid user id, then updates the info
 const editUser = async (req, res) => {
   try {
   const findUser = {_id: req.params.id};
