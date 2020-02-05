@@ -11,7 +11,7 @@ test('', () => {
 
 beforeAll(() => {
   const dbConfig = { useNewUrlParser: true, useUnifiedTopology: true };
-  mongoose.connect(process.env.TEST_DB, dbConfig, err => {
+  mongoose.connect(process.env.DB_URL, dbConfig, err => {
     if (err) {
       console.log(`Error: ${err.message}`);
     } else {
