@@ -6,7 +6,7 @@ exports.login = async () => {
    .post('/users/login')
    .send({
      email: 'cam021928@coderacademy.edu.au',
-     password: 'testtest2'
+     password: 'testtest'
    })
    return response.text
  }
