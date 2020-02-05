@@ -7,7 +7,7 @@ require("dotenv").config();
 //middleware
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: process.env.REACT_APP_FRONTEND_URL }));
+app.use(cors());
 app.use(morgan("dev"));
 
 //Connecting to the routes
