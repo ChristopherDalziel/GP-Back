@@ -43,14 +43,11 @@ describe('Testing all the mail route', () => {
       done();
   });
 
-  // describe('Testing all the mail route', () => {
-  //   it('Returns status 200 if can send a reset password', async done => {
-  //     await request.post('/mail/reset-password')       
-  //       expect(500);
-  //       done();
-  //   });
-
-
+  it('Returns status 200 if can send a reset password', async done => {
+        await request.post('/mail/reset-password')       
+          expect(500);
+          done();
+    });
 
 
   it('Returns status 200 if all required fields completed ', async done => {
