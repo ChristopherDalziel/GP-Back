@@ -1,16 +1,10 @@
-const express = require("express");
 const User = require("../models/user");
 const Appointment = require("../models/appointment");
 const mongoose = require("mongoose");
-const cors = require("cors");
-
 
 //staff
 const Staff = require("../models/staff");
 
-let app = express();
-app.use(express.json());
-app.use(cors());
 
 //retrieve all users in order of last name
 async function allUsers(req, res) {

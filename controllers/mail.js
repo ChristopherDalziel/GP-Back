@@ -1,13 +1,7 @@
-const cors = require("cors");
 const nodemailer = require("nodemailer");
-const express = require("express");
 const uuidv1 = require("uuidv1");
 const format = require("date-fns/format");
-const parseISO = require("date-fns/parseISO");
-
-let app = express();
-app.use(express.json());
-app.use(cors());
+const parseISO =require('date-fns/parseISO');
 
 require("dotenv").config();
 
