@@ -38,5 +38,10 @@
     "serviceName": "Pregnancy Test",
     "serviceDescription": "Urine",
     "imageUrl": "http://res.cloudinary.com/acloudname10/image/upload/v1580557996/qqa6iexpdxkzvczykz5w.jpg"
+  },
+  {
+    "serviceName": "Influenza A/B Rapid Test",
+    "serviceDescription": "Only nasal swab required",
+    "imageUrl": "http://res.cloudinary.com/acloudname10/image/upload/v1580876272/ta0tq9506sythzld91sz.jpg"
   }
 ]
