@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const Appointment = require("../models/appointment");
 const mongoose = require("mongoose");
+const subDays = require('date-fns/subDays');
 
 //staff
 const Staff = require("../models/staff");
@@ -21,12 +22,22 @@ async function allUsers(req, res) {
 
 //retrieve all appointments that have not been cancelled, sorted by date time of appointment
 async function allAppointments(req, res) {
-  try {
-    const query = Appointment.find({ cancelled: false });
-    query instanceof mongoose.Query; // true
-    const appointmentsList = await query.sort({ dateTime: "ascending" }); // Get the documents
-    res.send(appointmentsList);
-  } catch (err) {
+  const deleteOldAppointment = () => {
+    let today = new Date();
+    let dateLastWeek = subDays(today, 7)
+    Appointment.deleteMany({ dateTime: dateLastWeek }, function (err) {
+     if(err) console.log(err);
+     console.log("Deletion OK");
+    })
+  }
+    try {
+      deleteOldAppointment();
+      const query = Appointment.find({ cancelled: false });
+      query instanceof mongoose.Query; // true
+      const appointmentsList = await query.sort({ dateTime: "ascending" });
+      console.log(appointmentsList);
+      res.send(appointmentsList); // Get the documents
+    } catch (err) {
     console.log(err.message);
     res.send(err.message);
   }
