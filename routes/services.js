@@ -16,9 +16,9 @@ router.get("/", index);
 
 router.post("/create", checkToken, checkAdmin, create);
 
-router.put("/update/:id",checkToken, checkAdmin, update);
+router.put("/update/:id", checkToken, checkAdmin, update);
 
-router.delete("/delete/:id", checkToken, checkAdmin,destroy);
+router.delete("/delete/:id", checkToken, checkAdmin, destroy);
 
 router.get("/:id", show);
 
