@@ -5,6 +5,7 @@ const index = async (req, res) => {
   res.send(hours);
 };
 
+// Show for display
 const show = async (req, res) => {
   try {
     const hours = await openingHours.findById(req.params.id);
@@ -14,7 +15,8 @@ const show = async (req, res) => {
   }
 };
 
-const update = async (req, res, next) => {
+// Update function deletes the old information out of the DB since we only ever want there to be 7 days of the week
+const update = async (req, res) => {
   try {
     await openingHours.deleteMany();
     const times = Object.values(req.body);

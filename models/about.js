@@ -8,8 +8,8 @@ const AboutSchema = new Schema(
       required: true
     },
     drInfo: {
-    type: String,
-    required: true
+      type: String,
+      required: true
     }
   },
   { collection: "about" }
