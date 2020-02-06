@@ -43,5 +43,10 @@
     "serviceName": "Influenza A/B Rapid Test",
     "serviceDescription": "Only nasal swab required",
     "imageUrl": "http://res.cloudinary.com/acloudname10/image/upload/v1580876272/ta0tq9506sythzld91sz.jpg"
+  },
+  {
+    "serviceName": "Pap Smears",
+    "serviceDescription": "",
+    "imageUrl": "https://res.cloudinary.com/acloudname10/image/upload/v1580964152/cieeyga8canyx7cp27by.png"
   }
 ]
